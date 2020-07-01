@@ -1,15 +1,15 @@
 {
   "development": {
     "username": "root",
-    "password": null,
-    "database": "project_3_local",
+    "password": "burger12?",
+    "database": "xeric_files",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
   "test": {
     "username": "root",
-    "password": null,
-    "database": "project_3_test",
+    "password": "burger12?",
+    "database": "xeric_files_test",
     "host": "127.0.0.1",
     "dialect": "mysql"
   }

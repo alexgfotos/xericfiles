@@ -19,6 +19,26 @@ module.exports = function(sequelize, DataTypes) {
       password: {
         type: DataTypes.STRING,
         allowNull: false
+      },
+      username: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
+      zone: {
+        type: DataTypes.STRING,
+        allowNull: true
+      },
+      image: {
+        type: DataTypes.STRING,
+        allowNull: true
+      },
+      city: {
+        type: DataTypes.STRING,
+        allowNull: true
+      },
+      state: {
+        type: DataTypes.STRING,
+        allowNull: true
       }
     },
     {
@@ -53,8 +73,14 @@ module.exports = function(sequelize, DataTypes) {
   User.associate = function(models) {
     // Associating User with Posts
     // When an User is deleted, also delete any associated Posts
-    User.hasMany(models.Post, {
+    User.hasMany(models.Plant, {
       onDelete: "cascade"
+    });
+    User.hasOne(models.Zone, {
+    });
+    User.hasOne(models.Wishlist, {
+    });
+    User.hasOne(models.Graveyard, {
     });
   };
 

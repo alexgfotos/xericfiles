@@ -27,7 +27,11 @@ module.exports = function (sequelize, DataTypes) {
         })
         Species.hasMany(models.Plant, {
         })
-        Species.belongsTo(models.Genus
+        Species.belongsTo(models.Genus, {
+            foreignKey: {
+              allowNull: false
+            }
+          }
         );
     };
 
