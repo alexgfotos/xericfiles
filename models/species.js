@@ -20,7 +20,6 @@ module.exports = function (sequelize, DataTypes) {
             len: [1]
         }
     });
-
     Species.associate = function (models) {
         // Associating Species with Posts
         // When an Species is deleted, also delete any associated Posts

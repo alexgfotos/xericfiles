@@ -29,7 +29,6 @@ module.exports = function (sequelize, DataTypes) {
             }
         },
     });
-
     Plant.associate = function (models) {
         Plant.hasMany(models.Image, {
             onDelete: "cascade"

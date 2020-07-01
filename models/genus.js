@@ -13,7 +13,6 @@ module.exports = function (sequelize, DataTypes) {
             len: [1]
         }
     });
-
     Genus.associate = function (models) {
         // Associating Genus with Posts
         // When an Genus is deleted, also delete any associated Posts
