@@ -1,5 +1,5 @@
-DROP DATABASE IF EXISTS project_3_local;
-CREATE DATABASE project_3_local;
+DROP DATABASE IF EXISTS xeric_files;
+CREATE DATABASE xeric_files;
 
-DROP DATABASE IF EXISTS project_3_test;
-CREATE DATABASE project_3_test;
+DROP DATABASE IF EXISTS pxeric_files_test;
+CREATE DATABASE xeric_files_test;
