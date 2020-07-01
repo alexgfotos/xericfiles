@@ -6,6 +6,7 @@ import Masonry from 'react-masonry-css'
 
 
 class Explore extends Component {
+    
     state = {
         imageUrl: "",
         imageUrlArray: [
@@ -41,8 +42,7 @@ class Explore extends Component {
         })
 
         return (
-            // <Container maxWidth="l" >
-                <Grid container spacing={3}>
+                <Grid container spacing={3} className="backroundColor">
                     <Grid item xs={12}>
                         <Typography variant="h6" align="center" >
                             Explore
@@ -54,10 +54,7 @@ class Explore extends Component {
                         columnClassName="my-masonry-grid_column">
                         {images}
                     </Masonry>
-                   
                 </Grid>
-            // </Container >
-
         )
     }
 

@@ -1,19 +1,19 @@
 
   .singleImage {
-    padding: 0 20px 20px;
+    padding: 5px 5px;
     height: unset;
-    max-width: 100%;
+    max-width: 100%;;
     border-radius: 30px;
   }
    
   .singleImage:hover {
    
     transition: 0.1s;
-    transform: scale(1.24); 
+    transform: scale(1.2); 
   }
   
    .my-masonry-grid {
-    display: -webkit-box; /* Not needed if autoprefixing */
+    display: -webkit-box; 
     display: -ms-flexbox; /* Not needed if autoprefixing */
     display: flex;
     margin-left: -40px; /* gutter size offset */
@@ -30,4 +30,8 @@
     margin-bottom: 30px;
   }
 
+  .backroundColor{
+    background-color:#EAFDCF;
+    padding: 0 50px 0;
+  }
  
