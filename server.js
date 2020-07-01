@@ -24,12 +24,14 @@ app.use(morgan("dev"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+//Serves up static files
+app.use("/static", express.static("public"));
+
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
-//Serves up static files
-app.use(express.static("public"));
+
 
 // We need to use sessions to keep track of our user's login status
 app.use(
