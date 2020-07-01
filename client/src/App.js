@@ -11,6 +11,7 @@ import { Navigation, Error } from "./components";
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import API from './utils/API';
+import Explore from './pages/Explore/Explore';
 
 function App() {
   const [user, setUser] = useState({});
@@ -64,6 +65,9 @@ function App() {
               <Switch>
                 <Route exact path={["/", "/home"]}>
                   <Home />
+                </Route>
+                <Route exact path={["/explore"]}>
+                  <Explore />
                 </Route>
                 <Route exact path={["/requirements"]}>
                   <Requirements />
