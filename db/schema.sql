@@ -1,5 +1,5 @@
 DROP DATABASE IF EXISTS xeric_files;
 CREATE DATABASE xeric_files;
 
-DROP DATABASE IF EXISTS pxeric_files_test;
+DROP DATABASE IF EXISTS xeric_files_test;
 CREATE DATABASE xeric_files_test;
