@@ -11,10 +11,10 @@ import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import { red } from '@material-ui/core/colors';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
+import VirtualizedList from "./VirtualizedList";
+
 
 
 const useStyles = makeStyles((theme) => ({
@@ -49,7 +49,7 @@ export default function RecipeReviewCard() {
   };
 
   return (
-    
+
     <Card className={classes.root} >
       <CardHeader
         avatar={
@@ -64,15 +64,15 @@ export default function RecipeReviewCard() {
         subheader="Family: Cactaceae"
       />
       <CardMedia
-     
+
         className={classes.media}
         image="https://pics.davesgarden.com/pics/2011/04/02/Xenomorf/c8008f.jpg"
         title="plant image"
       />
       <CardContent>
-
+      <VirtualizedList/>
         <Typography variant="body2" color="textSecondary" component="p">
-          This cactus consists of many small tubercles growing from a large tap root. They are usually solitary, rarely giving rise to side shoots from old areoles. 
+          This cactus consists of many small tubercles growing from a large tap root. They are usually solitary, rarely giving rise to side shoots from old areoles.
         </Typography>
       </CardContent>
       <CardActions disableSpacing>

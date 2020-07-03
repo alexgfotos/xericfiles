@@ -13,6 +13,7 @@ import Grid from '@material-ui/core/Grid';
 import API from './utils/API';
 import Explore from './pages/Explore/Explore';
 import IndividualPlant from './pages/IndividualPlant';
+import Form from './pages/Form';
 
 function App() {
   const [user, setUser] = useState({});
@@ -75,6 +76,9 @@ function App() {
                 </Route>
                 <Route exact path={["/individual"]}>
                   <IndividualPlant />
+                </Route>
+                <Route exact path={["/form"]}>
+                  <Form/>
                 </Route>
                 <PrivateRoute exact user={user} path={["/forum"]}>
                   <Forum user={user} />
