@@ -1,5 +1,5 @@
 module.exports = function (sequelize, DataTypes) {
-    var Genus = sequelize.define("Genus", {
+    const Genus = sequelize.define("Genus", {
         genus: {
             type: DataTypes.STRING,
             allowNull: false,
