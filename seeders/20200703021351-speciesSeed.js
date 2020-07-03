@@ -147,7 +147,9 @@ module.exports = {
     },
     {
       species: 'chrysacanthus',
-      GenusId: 6
+      GenusId: 6,
+      createdAt: new Date(),
+      updatedAt: new Date()
     },
     {
       species: 'emoryi',
