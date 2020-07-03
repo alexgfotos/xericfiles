@@ -6,11 +6,11 @@ function FormPlant() {
 
   return (
     <>
-      <Paper alignItems="center" justify="center" direction="row">
-        <Container maxWidth="sm">
+      <Paper>
+        <Container >
           <form>
-            <Grid container spacing={3}>
-              <Grid item xs={12}>
+            <Grid container spacing={2} direction="column" justify="center" alignItems="center" >
+              <Grid item xs={12} >
                 <Typography variant="h4" gutterBottom>
                   Add a Plant
                                 </Typography>
@@ -25,15 +25,15 @@ function FormPlant() {
                   helperText="Please select the genus"
                   variant="filled"
                 >
-                  {/* {currencies.map((option) => (
-                    <MenuItem key={option.value} value={option.value}>
+                  {genus.map((genus) => (
+                    <MenuItem key={genus.id} value={genus.value}>
                       {option.label}
                     </MenuItem>
-                  ))} */}
+                  ))}
                 </TextField>
               </Grid>
               <Grid item xs={12}>
-              <TextField
+                <TextField
                   id=""
                   select
                   label="Select"
@@ -93,10 +93,10 @@ function FormPlant() {
                   placeholder="Enter the size of the plant"
                 />
               </Grid>
-       
+
 
               <Grid item xs={12}>
-                <Button variant="contained" color="primary" type="submit" onClick="">
+                <Button variant="contained" color="primary" type="submit" onClick="" spacing={4}>
                   Submit
                                 </Button>
               </Grid>
