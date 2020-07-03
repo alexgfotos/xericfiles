@@ -1,9 +1,9 @@
 module.exports = function (sequelize, DataTypes) {
-    var Wishlist = sequelize.define("Wishlist", {
-        plant: {
-            type: DataTypes.STRING,
-            allowNull: false,   
-        },
+    const Wishlist = sequelize.define("Wishlist", {
+        // plant: {
+        //     type: DataTypes.STRING,
+        //     allowNull: false,
+        // },
     });
     Wishlist.associate = function (models) {
         Wishlist.hasMany(models.Plant, {

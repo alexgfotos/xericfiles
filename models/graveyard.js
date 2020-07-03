@@ -1,7 +1,7 @@
 module.exports = function (sequelize, DataTypes) {
-    var Graveyard = sequelize.define("Graveyard", {
-        plant: {
-            type: DataTypes.STRING,
+    const Graveyard = sequelize.define("Graveyard", {
+        date: {
+            type: DataTypes.DATEONLY,
             allowNull: false,
         },
     });
