@@ -44,7 +44,7 @@ app.use(passport.session());
 app.use(routes);
 
 let config = { force: false };
-if (process.env.NODE_ENV === "TEST" || process.env.NODE_ENV === "production") {
+if (process.env.NODE_ENV === "TEST") {
   config.force = true;
 }
 // if we need it! {force:true}
