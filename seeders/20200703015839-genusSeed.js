@@ -9,62 +9,62 @@ module.exports = {
 
     // Example:
     return queryInterface.bulkInsert('genera', [{
-      genus: ['Ariocarpus', 'Astrophytum', 'Copiapoa', 'Coryphantha', 'Echinocactus', 'Ferocactus', 'Gymnocalycium', 'Lophophora', 'Tephrocactus', 'Turbinicarpus'],
-      country: ['Mexico', 'USA, Mexico', 'Chile', 'USA, Mexico', 'USA, Mexico', 'USA, Mexico', 'Argentina, Uruguay, Paraguay, Bolivia, Brazil', 'USA, Mexico', 'Argentina', 'Mexico'],
+      genus: 'Ariocarpus',
+      country: 'Mexico',
       createdAt: new Date(),
       updatedAt: new Date()
     },
     {
-      genus: ['Ariocarpus', 'Astrophytum', 'Copiapoa', 'Coryphantha', 'Echinocactus', 'Ferocactus', 'Gymnocalycium', 'Lophophora', 'Tephrocactus', 'Turbinicarpus'],
-      country: ['Mexico', 'USA, Mexico', 'Chile', 'USA, Mexico', 'USA, Mexico', 'USA, Mexico', 'Argentina, Uruguay, Paraguay, Bolivia, Brazil', 'USA, Mexico', 'Argentina', 'Mexico'],
+      genus:  'Astrophytum',
+      country:  'USA, Mexico',
       createdAt: new Date(),
       updatedAt: new Date()
     },
     {
-      genus: ['Ariocarpus', 'Astrophytum', 'Copiapoa', 'Coryphantha', 'Echinocactus', 'Ferocactus', 'Gymnocalycium', 'Lophophora', 'Tephrocactus', 'Turbinicarpus'],
-      country: ['Mexico', 'USA, Mexico', 'Chile', 'USA, Mexico', 'USA, Mexico', 'USA, Mexico', 'Argentina, Uruguay, Paraguay, Bolivia, Brazil', 'USA, Mexico', 'Argentina', 'Mexico'],
+      genus: 'Copiapoa',
+      country: 'Chile',
       createdAt: new Date(),
       updatedAt: new Date()
     },
     {
-      genus: ['Ariocarpus', 'Astrophytum', 'Copiapoa', 'Coryphantha', 'Echinocactus', 'Ferocactus', 'Gymnocalycium', 'Lophophora', 'Tephrocactus', 'Turbinicarpus'],
-      country: ['Mexico', 'USA, Mexico', 'Chile', 'USA, Mexico', 'USA, Mexico', 'USA, Mexico', 'Argentina, Uruguay, Paraguay, Bolivia, Brazil', 'USA, Mexico', 'Argentina', 'Mexico'],
+      genus:  'Coryphantha',
+      country: 'USA, Mexico',
       createdAt: new Date(),
       updatedAt: new Date()
     },
     {
-      genus: ['Ariocarpus', 'Astrophytum', 'Copiapoa', 'Coryphantha', 'Echinocactus', 'Ferocactus', 'Gymnocalycium', 'Lophophora', 'Tephrocactus', 'Turbinicarpus'],
-      country: ['Mexico', 'USA, Mexico', 'Chile', 'USA, Mexico', 'USA, Mexico', 'USA, Mexico', 'Argentina, Uruguay, Paraguay, Bolivia, Brazil', 'USA, Mexico', 'Argentina', 'Mexico'],
+      genus: 'Echinocactus',
+      country: 'USA, Mexico',
       createdAt: new Date(),
       updatedAt: new Date()
     },
     {
-      genus: ['Ariocarpus', 'Astrophytum', 'Copiapoa', 'Coryphantha', 'Echinocactus', 'Ferocactus', 'Gymnocalycium', 'Lophophora', 'Tephrocactus', 'Turbinicarpus'],
-      country: ['Mexico', 'USA, Mexico', 'Chile', 'USA, Mexico', 'USA, Mexico', 'USA, Mexico', 'Argentina, Uruguay, Paraguay, Bolivia, Brazil', 'USA, Mexico', 'Argentina', 'Mexico'],
+      genus: 'Ferocactus',
+      country: 'USA, Mexico',
       createdAt: new Date(),
       updatedAt: new Date()
     },
     {
-      genus: ['Ariocarpus', 'Astrophytum', 'Copiapoa', 'Coryphantha', 'Echinocactus', 'Ferocactus', 'Gymnocalycium', 'Lophophora', 'Tephrocactus', 'Turbinicarpus'],
-      country: ['Mexico', 'USA, Mexico', 'Chile', 'USA, Mexico', 'USA, Mexico', 'USA, Mexico', 'Argentina, Uruguay, Paraguay, Bolivia, Brazil', 'USA, Mexico', 'Argentina', 'Mexico'],
+      genus: 'Gymnocalycium',
+      country: 'Argentina, Uruguay, Paraguay, Bolivia, Brazil',
       createdAt: new Date(),
       updatedAt: new Date()
     },
     {
-      genus: ['Ariocarpus', 'Astrophytum', 'Copiapoa', 'Coryphantha', 'Echinocactus', 'Ferocactus', 'Gymnocalycium', 'Lophophora', 'Tephrocactus', 'Turbinicarpus'],
-      country: ['Mexico', 'USA, Mexico', 'Chile', 'USA, Mexico', 'USA, Mexico', 'USA, Mexico', 'Argentina, Uruguay, Paraguay, Bolivia, Brazil', 'USA, Mexico', 'Argentina', 'Mexico'],
+      genus: 'Lophophora',
+      country: 'USA, Mexico',
       createdAt: new Date(),
       updatedAt: new Date()
     },
     {
-      genus: ['Ariocarpus', 'Astrophytum', 'Copiapoa', 'Coryphantha', 'Echinocactus', 'Ferocactus', 'Gymnocalycium', 'Lophophora', 'Tephrocactus', 'Turbinicarpus'],
-      country: ['Mexico', 'USA, Mexico', 'Chile', 'USA, Mexico', 'USA, Mexico', 'USA, Mexico', 'Argentina, Uruguay, Paraguay, Bolivia, Brazil', 'USA, Mexico', 'Argentina', 'Mexico'],
+      genus:  'Tephrocactus',
+      country:  'Argentina',
       createdAt: new Date(),
       updatedAt: new Date()
     },
     {
-      genus: ['Ariocarpus', 'Astrophytum', 'Copiapoa', 'Coryphantha', 'Echinocactus', 'Ferocactus', 'Gymnocalycium', 'Lophophora', 'Tephrocactus', 'Turbinicarpus'],
-      country: ['Mexico', 'USA, Mexico', 'Chile', 'USA, Mexico', 'USA, Mexico', 'USA, Mexico', 'Argentina, Uruguay, Paraguay, Bolivia, Brazil', 'USA, Mexico', 'Argentina', 'Mexico'],
+      genus:  'Turbinicarpus',
+      country: 'Mexico',
       createdAt: new Date(),
       updatedAt: new Date()
     }],
@@ -73,13 +73,13 @@ module.exports = {
 
   },
 
-  down: (queryInterface, Sequelize) => {
-    /*
-      Add reverting commands here.
-      Return a promise to correctly handle asynchronicity.
-
-      Example:
-      return queryInterface.bulkDelete('People', null, {});
-    */
-  }
-};
+   down: (queryInterface, Sequelize) => {
+//     // /*
+//     //   Add reverting commands here.
+//     //   Return a promise to correctly handle asynchronicity.
+//     //
+//     //   Example:
+//     //   return queryInterface.bulkDelete('People', null, {});
+//     // */
+   }
+ };
