@@ -1,8 +1,21 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Container, Grid, Button, TextField, Paper, Typography, MenuItem } from '@material-ui/core';
+import Autocomplete from '@material-ui/lab/Autocomplete';
+import axios from "axios";
 
 function FormPlant() {
 
+  const [genusOptions, setGenusOptions] = useState([]);
+
+  useEffect(async () => {
+    const res = await axios.get("/api/genus")
+    console.log(res);
+
+    setGenusOptions(res.data);
+ 
+
+
+  }, [])
 
   return (
     <>
@@ -16,21 +29,16 @@ function FormPlant() {
                                 </Typography>
               </Grid>
               <Grid item xs={12}>
-                <TextField
-                  id=""
-                  select
-                  label="Select"
-                  value=""
-                  onChange=""
-                  helperText="Please select the genus"
-                  variant="filled"
+                <Autocomplete
+                  id={"genus"}
+                  options={genusOptions}
+                  renderInput={(params) => <TextField {...params} label="Combo box" variant="outlined" />}
+                  loading={true}
+                  getOptionLabel={(option) => option.genus}
                 >
-                  {genus.map((genus) => (
-                    <MenuItem key={genus.id} value={genus.value}>
-                      {option.label}
-                    </MenuItem>
-                  ))}
-                </TextField>
+
+
+                </Autocomplete>
               </Grid>
               <Grid item xs={12}>
                 <TextField
