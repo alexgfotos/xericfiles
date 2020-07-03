@@ -246,11 +246,17 @@ You may also need to:
 
 ## Deployment
 
+
 Please follow the configuration guide supplied in Unit 14. You will need to: 
 
 - Configure a Heroku application
 - Add an instance of JawsDB and add the connection information in ```config/config.json```
 - Pass the config var ```NODE_ENV = production``` in the deployed version. 
+
+### Running Seeds:
+
+    -heroku run bash -a xeric
+    -npx sequelize-cli db:seed:all
 
 ## Built With
 

@@ -3,9 +3,9 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    console.log(process.env);
-    console.log(Sequelize);
-    console.log(queryInterface);
+    // console.log(process.env);
+    // console.log(Sequelize);
+    // console.log(queryInterface);
     // Add altering commands here.
     // Return a promise to correctly handle asynchronicity.
 
