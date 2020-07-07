@@ -39,7 +39,7 @@ function FormPlant() {
 
   const handleDateChange = (date) => {
     setSelectedDate(date);
-    
+
   };
 
   return (
@@ -51,7 +51,7 @@ function FormPlant() {
               <Grid item xs={12} >
                 <Typography variant="h4" gutterBottom>
                   Add a Plant
-                                </Typography>
+                </Typography>
               </Grid>
 
               <Grid item xs={12}>
@@ -142,7 +142,7 @@ function FormPlant() {
                   placeholder="type ..."
                   style={{ width: 400, height: 100, fontFamily: "sans-serif", fontSize: "12px" }}
                   onChange={e => setNote(e.target.value)}
-                   />
+                />
               </Grid>
 
               <Grid item xs={12}>

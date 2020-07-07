@@ -3,13 +3,13 @@ import { Grid } from "@material-ui/core";
 import FormPlant from "../components/FormPlant"
 
 
-function Form() {
+function Form(props) {
 
     return (
         <>
             <Grid container spacing={5}>
                 <Grid item xs={12}>
-                    <FormPlant />
+                    <FormPlant/>
                 </Grid>
             </Grid>
         </>
