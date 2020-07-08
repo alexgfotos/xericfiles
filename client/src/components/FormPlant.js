@@ -8,6 +8,7 @@ import { MuiPickersUtilsProvider, KeyboardDatePicker, } from '@material-ui/picke
 function FormPlant() {
 
   const [genusOptions, setGenusOptions] = useState([]);
+  const [selectedGenus, setSelectedGenus]= useState();
   const [speciesOptions, setSpeciesOptions] = useState([]);
   const [nickname, setNickname] = useState();
   const [price, setPrice] = useState();
@@ -15,15 +16,29 @@ function FormPlant() {
   const [note, setNote] = useState();
   const [selectedDate, setSelectedDate] = React.useState(new Date);
 
-  useEffect(async () => {
-    const gen = await axios.get("/api/genus")
-    const spec = await axios.get("/api/species")
-    console.log(gen);
-    console.log(spec);
+  useEffect(() => {
 
-    setGenusOptions(gen.data);
-    setSpeciesOptions(spec.data);
+    async function getSpecies() {
 
+      const spec = await axios.get(`/api/species?GenusId=${selectedGenus}`)
+      console.log(spec);
+
+      setSpeciesOptions(spec.data);
+
+    }
+    getSpecies()
+  }, [selectedGenus])
+
+  useEffect(() => {
+
+    async function getGenera() {
+
+      const gen = await axios.get("/api/genus")
+      console.log(gen);
+
+      setGenusOptions(gen.data);
+    }
+    getGenera();
   }, [])
 
   const handleSubmit = e => {
@@ -62,6 +77,7 @@ function FormPlant() {
                   renderInput={(params) => <TextField {...params} label="Select the genus" variant="outlined" />}
                   loading={true}
                   getOptionLabel={(option) => option.genus}
+                  onChange={(e, value) => setSelectedGenus(value.id)}
                 >
                 </Autocomplete>
               </Grid>
