@@ -45,12 +45,12 @@ module.exports = function (sequelize, DataTypes) {
         });
         Plant.belongsTo(models.Wishlist, {
             foreignKey: {
-                allowNull: false
+                allowNull: true
             }
         });
         Plant.belongsTo(models.Graveyard, {
             foreignKey: {
-                allowNull: false
+                allowNull: true
             }
         });
 

@@ -94,5 +94,22 @@ export default {
         update: function(id, data){
             return _update("users", id, data);
         }
+    },
+    Plant: {
+        getAll: function () {
+            return _getAll("plants");
+        },
+        getById: function (id) {
+            return _getOne("plants", id);
+        },
+        delete: function (id) {
+            return _delete("plants", id);
+        },
+        create: function(data){
+            return _create("plants", data);
+        },
+        update: function(id, data){
+            return _update("plants", id, data);
+        }
     }
 }
