@@ -8,7 +8,7 @@ import { MuiPickersUtilsProvider, KeyboardDatePicker, } from '@material-ui/picke
 function FormPlant() {
 
   const [genusOptions, setGenusOptions] = useState([]);
-  const [selectedGenus, setSelectedGenus]= useSate([])
+  const [selectedGenus, setSelectedGenus]= useState();
   const [speciesOptions, setSpeciesOptions] = useState([]);
   const [nickname, setNickname] = useState();
   const [price, setPrice] = useState();
@@ -20,14 +20,14 @@ function FormPlant() {
 
     async function getSpecies() {
 
-      const spec = await axios.get("/api/species")
+      const spec = await axios.get(`/api/species?GenusId=${selectedGenus}`)
       console.log(spec);
 
       setSpeciesOptions(spec.data);
 
     }
     getSpecies()
-  }, [genusOptions])
+  }, [selectedGenus])
 
   useEffect(() => {
 
@@ -77,7 +77,7 @@ function FormPlant() {
                   renderInput={(params) => <TextField {...params} label="Select the genus" variant="outlined" />}
                   loading={true}
                   getOptionLabel={(option) => option.genus}
-                  onChange={setSelectedGenus(e.target.value)}
+                  onChange={(e, value) => setSelectedGenus(value.id)}
                 >
                 </Autocomplete>
               </Grid>

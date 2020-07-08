@@ -6,13 +6,13 @@ const isAuthenticated = require("../../config/middleware/isAuthenticated");
  * Post - Read All
  */
 router.get("/", function (req, res) {
-    db.Species.findAll()
+    db.Species.findAll({ where: req.query })
         .then(dbModel => res.json(dbModel))
         .catch(err => res.status(422).json(err));
 });
 
 
-router.get("/:id",  function (req, res) {
+router.get("/:id", function (req, res) {
     db.Species.findById(req.params.id)
         .then(dbModel => res.json(dbModel))
         .catch(err => res.status(422).json(err));
@@ -22,8 +22,8 @@ router.get("/:id",  function (req, res) {
  * Post - Create
  * Notice how we are also taking in the User Id! Important!
  */
-router.post("/", isAuthenticated,  function (req, res) {
-    if(req.user === null || req.user.id === null){
+router.post("/", isAuthenticated, function (req, res) {
+    if (req.user === null || req.user.id === null) {
         res.status(401).json("NOT AUTHORIZED");
     }
     db.Species.create({
