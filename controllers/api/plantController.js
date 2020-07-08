@@ -27,7 +27,8 @@ router.post("/", isAuthenticated,  function (req, res) {
         res.status(401).json("NOT AUTHORIZED");
     }
     db.Plant.create({
-        ...req.body
+        ...req.body,
+        UserId: req.user.id
     })
         .then(dbModel => res.json(dbModel))
         .catch(err => res.status(422).json(err));

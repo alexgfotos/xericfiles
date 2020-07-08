@@ -30,10 +30,11 @@ function App() {
     })
   }
 
-  function signupUser(email, password) {
+  function signupUser(email, password, username) {
     const data = {
       email: email,
-      password: password
+      password: password,
+      username: username
     }
     API.Auth.signup(data).then(res => {
       setUser(res.data)

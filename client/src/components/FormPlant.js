@@ -4,17 +4,17 @@ import Autocomplete from '@material-ui/lab/Autocomplete';
 import axios from "axios";
 import DateFnsUtils from '@date-io/date-fns';
 import { MuiPickersUtilsProvider, KeyboardDatePicker, } from '@material-ui/pickers';
+import API from '..//utils/API';
 
 function FormPlant() {
 
   const [genusOptions, setGenusOptions] = useState([]);
-  const [selectedGenus, setSelectedGenus]= useState();
+  const [selectedGenus, setSelectedGenus] = useState();
+  const [selectedSpecies, setSelectedSpecies] = useState();
   const [speciesOptions, setSpeciesOptions] = useState([]);
-  const [nickname, setNickname] = useState();
-  const [price, setPrice] = useState();
-  const [size, setSize] = useState();
-  const [note, setNote] = useState();
   const [selectedDate, setSelectedDate] = React.useState(new Date);
+  const initialFormState = { name: "", width: "", price: "" };
+  const [formObject, setFormObject] = useState(initialFormState)
 
   useEffect(() => {
 
@@ -41,17 +41,29 @@ function FormPlant() {
     getGenera();
   }, [])
 
-  const handleSubmit = e => {
-    e.preventDefault();
-    console.log("Genus is: " + genusOptions);
-    console.log("Genus is: " + speciesOptions);
-    console.log("Nickname is: " + nickname);
-    console.log("Price is: " + price);
-    console.log("Size is: " + size);
-    console.log("Date is: " + selectedDate);
-    console.log("Note is: " + note);
-  };
+  const handlePlantSubmit = async (event) => {
+    event.preventDefault();
+    API.Plant.create({...formObject, GenusId: selectedGenus, SpeciesId: selectedSpecies, date: selectedDate}).then(res => {
+    }).catch(err => {
+    })
+  }
 
+
+  // const handleSubmit = e => {
+  //   e.preventDefault();
+  //   console.log("Genus is: " + genusOptions);
+  //   console.log("Genus is: " + speciesOptions);
+  //   console.log("Nickname is: " + nickname);
+  //   console.log("Price is: " + price);
+  //   console.log("Size is: " + size);
+  //   console.log("Date is: " + selectedDate);
+  //   console.log("Note is: " + note);
+  // };
+  const handleInputChange = (event) => {
+    event.preventDefault();
+    const { name, value } = event.target;
+    setFormObject({ ...formObject, [name]: value });
+  }
   const handleDateChange = (date) => {
     setSelectedDate(date);
 
@@ -73,6 +85,7 @@ function FormPlant() {
                 <Autocomplete
                   style={{ width: 200 }}
                   id={"genus"}
+                  name="GenusId"
                   options={genusOptions}
                   renderInput={(params) => <TextField {...params} label="Select the genus" variant="outlined" />}
                   loading={true}
@@ -86,9 +99,11 @@ function FormPlant() {
                 <Autocomplete
                   style={{ width: 200 }}
                   id={"species"}
+                  name="SpeciesId"
                   options={speciesOptions}
                   renderInput={(params) => <TextField {...params} label="Select the species" variant="outlined" />}
                   loading={true}
+                  onChange={(e, value) => setSelectedSpecies(value.id)}
                   getOptionLabel={(option) => option.species}
                 >
                 </Autocomplete>
@@ -100,8 +115,8 @@ function FormPlant() {
                   id="standard-required"
                   label="Nickname"
                   placeholder="Enter the nickname"
-                  name="nickname"
-                  onChange={e => setNickname(e.target.value)}
+                  name="name"
+                  onChange={handleInputChange}
                   style={{ width: 200 }}
                 />
               </Grid>
@@ -113,7 +128,7 @@ function FormPlant() {
                   id="standard-required"
                   label="Price paid in USD"
                   name="price"
-                  onChange={e => setPrice(e.target.value)}
+                  onChange={handleInputChange}
                   style={{ width: 200 }}
                 />
               </Grid>
@@ -124,10 +139,10 @@ function FormPlant() {
                   id="standard-required"
                   label="Size"
                   placeholder="Enter the size in inches"
-                  name="size"
+                  name="width"
                   style={{ width: 200 }}
                   type="number"
-                  onChange={e => setSize(e.target.value)}
+                  onChange={handleInputChange}
                   InputLabelProps={{ shrink: true }}
                 />
               </Grid>
@@ -140,6 +155,7 @@ function FormPlant() {
                     format="MM/dd/yyyy"
                     margin="normal"
                     id="date-picker-inline"
+                    name="date"
                     label="Date of acquired"
                     value={selectedDate}
                     onChange={handleDateChange}
@@ -157,12 +173,12 @@ function FormPlant() {
                   aria-label="empty textarea"
                   placeholder="type ..."
                   style={{ width: 400, height: 100, fontFamily: "sans-serif", fontSize: "12px" }}
-                  onChange={e => setNote(e.target.value)}
+                  onChange={handleInputChange}
                 />
               </Grid>
 
               <Grid item xs={12}>
-                <Button variant="contained" color="primary" type="submit" onClick={handleSubmit} spacing={4}>
+                <Button variant="contained" color="primary" type="submit" onClick={handlePlantSubmit} spacing={4}>
                   Submit
                 </Button>
               </Grid>
