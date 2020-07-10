@@ -31,7 +31,7 @@ function FormPlant() {
   }, []) //this is staying to load on an empty state, which is on the initial page load
 
   useEffect(() => {
-    
+
     async function getSpecies() {
       // once genera are loaded, get species by genera ID using api call
       const spec = await axios.get(`/api/species?GenusId=${selectedGenus}`)
@@ -176,7 +176,7 @@ function FormPlant() {
                 <h3>Notes:</h3>
                 <TextareaAutosize
                   aria-label="empty textarea"
-                  placeholder="type ..."
+                  placeholder="type notes here ..."
                   name="notes"
                   style={{ width: 400, height: 100, fontFamily: "sans-serif", fontSize: "12px" }}
                   onChange={handleInputChange}
