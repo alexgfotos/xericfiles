@@ -19,7 +19,10 @@ router.post("/signup", function (req, res) {
   db.User.create({
     email: req.body.email,
     password: req.body.password,
-    username: req.body.username
+    username: req.body.username,
+    zone: req.body.zone,
+    city: req.body.city,
+    state: req.body.state
   })
     .then(function () {
       res.redirect(307, "/auth/login");
