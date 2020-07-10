@@ -7,7 +7,7 @@ import { MuiPickersUtilsProvider, KeyboardDatePicker, } from '@material-ui/picke
 import API from '..//utils/API';
 
 function FormPlant() {
-
+  //states used to define our plant
   const [genusOptions, setGenusOptions] = useState([]);
   const [selectedGenus, setSelectedGenus] = useState();
   const [selectedSpecies, setSelectedSpecies] = useState();
@@ -16,21 +16,10 @@ function FormPlant() {
   const initialFormState = { name: "", width: "", price: "" };
   const [formObject, setFormObject] = useState(initialFormState)
 
-  useEffect(() => {
 
-    async function getSpecies() {
-
-      const spec = await axios.get(`/api/species?GenusId=${selectedGenus}`)
-      console.log(spec);
-
-      setSpeciesOptions(spec.data);
-
-    }
-    getSpecies()
-  }, [selectedGenus])
 
   useEffect(() => {
-
+    // on site load, get all genera using the api call/route
     async function getGenera() {
 
       const gen = await axios.get("/api/genus")
@@ -39,11 +28,26 @@ function FormPlant() {
       setGenusOptions(gen.data);
     }
     getGenera();
-  }, [])
+  }, []) //this is staying to load on an empty state, which is on the initial page load
 
+  useEffect(() => {
+    
+    async function getSpecies() {
+      // once genera are loaded, get species by genera ID using api call
+      const spec = await axios.get(`/api/species?GenusId=${selectedGenus}`)
+      console.log(spec);
+
+      setSpeciesOptions(spec.data);
+
+    }
+    getSpecies()
+  }, [selectedGenus]) //this tells useEffect to load once the state "selectedGenus" exists
+
+
+  //when submit is hit, create plant in db by sending it an object created from the states in the form.
   const handlePlantSubmit = async (event) => {
     event.preventDefault();
-    API.Plant.create({...formObject, GenusId: selectedGenus, SpeciesId: selectedSpecies, date: selectedDate}).then(res => {
+    API.Plant.create({ ...formObject, GenusId: selectedGenus, SpeciesId: selectedSpecies, date: selectedDate }).then(res => {
     }).catch(err => {
     })
   }
@@ -59,6 +63,7 @@ function FormPlant() {
   //   console.log("Date is: " + selectedDate);
   //   console.log("Note is: " + note);
   // };
+
   const handleInputChange = (event) => {
     event.preventDefault();
     const { name, value } = event.target;
@@ -172,6 +177,7 @@ function FormPlant() {
                 <TextareaAutosize
                   aria-label="empty textarea"
                   placeholder="type ..."
+                  name="notes"
                   style={{ width: 400, height: 100, fontFamily: "sans-serif", fontSize: "12px" }}
                   onChange={handleInputChange}
                 />
