@@ -196,19 +196,20 @@ function FormPlant() {
               </MuiPickersUtilsProvider>
 
               <Grid item xs={12}>
-                <div>
                   <input
                     type="file"
                     name="file"
                     placeholder="Upload an image"
                     onChange={uploadImage}
+                    style={{ width: 200 }}
                   />
                   {loading ? (
                     <h3>Loading..</h3>
                   ) : (
-                      <img src={image} style={{ width: "200px" }} />
+                      <Grid item xs={12} >
+                        <img src={image} style={{ width: "200px" }} />
+                      </Grid>
                     )}
-                </div>
               </Grid>
 
               <Grid item xs={12}>
