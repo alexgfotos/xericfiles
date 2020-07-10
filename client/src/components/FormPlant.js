@@ -15,6 +15,8 @@ function FormPlant() {
   const [selectedDate, setSelectedDate] = React.useState(new Date);
   const initialFormState = { name: "", width: "", price: "" };
   const [formObject, setFormObject] = useState(initialFormState)
+  const [image, setImage] = useState("");
+  const [loading, setLoading] = useState(false)
 
 
 
@@ -50,6 +52,32 @@ function FormPlant() {
     API.Plant.create({ ...formObject, GenusId: selectedGenus, SpeciesId: selectedSpecies, date: selectedDate }).then(res => {
     }).catch(err => {
     })
+  }
+
+  const uploadImage = async e => {
+    const files = e.target.files
+    const data = new FormData()
+
+    data.append("file", files[0])
+    data.append("upload_preset", "xericfiles")
+
+    setLoading(true)
+
+    const res = await fetch(
+      'https://api.cloudinary.com/v1_1/university-of-arizona-bootcamp/image/upload',
+
+      {
+        method: "POST",
+        body: data
+      }
+    )
+
+    const file = await res.json()
+
+
+    setImage(file.secure_url)
+    setLoading(false)
+
   }
 
 
@@ -171,6 +199,23 @@ function FormPlant() {
                   />
                 </Grid>
               </MuiPickersUtilsProvider>
+
+              <Grid item xs={12}>
+                  <input
+                    type="file"
+                    name="file"
+                    placeholder="Upload an image"
+                    onChange={uploadImage}
+                    style={{ width: 200 }}
+                  />
+                  {loading ? (
+                    <h3>Loading..</h3>
+                  ) : (
+                      <Grid item xs={12} >
+                        <img src={image} style={{ width: "200px" }} />
+                      </Grid>
+                    )}
+              </Grid>
 
               <Grid item xs={12}>
                 <h3>Notes:</h3>
