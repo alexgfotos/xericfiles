@@ -14,6 +14,24 @@ import API from './utils/API';
 import Explore from './pages/Explore/Explore';
 import IndividualPlant from './pages/IndividualPlant';
 import Form from './pages/Form';
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      light: '#757ce8',
+      main: '#EAFDCF',
+      dark: '#002884',
+      contrastText: '#fff',
+    },
+    secondary: {
+      light: '#ff7961',
+      main: '#BCD39C',
+      dark: '#ba000d',
+      contrastText: '#000',
+    },
+  },
+});
 
 function App() {
   const [user, setUser] = useState({});
@@ -58,47 +76,43 @@ function App() {
 
   return (
     <>
-      <Router>
-        <Container>
-          <Grid container spacing={3}>
-            <Grid item xs={12}>
-              <Navigation user={user} logoutUser={logoutUser} />
+      <ThemeProvider theme={theme}>
+        <Router>
+          <Container>
+            <Grid container spacing={3}>
+              <Grid item xs={12}>
+                <Navigation user={user} logoutUser={logoutUser} />
+              </Grid>
+              <Grid item xs={12}>
+                {error && <Error error={error} clearError={clearError} />}
+              </Grid>
+              <Grid item xs={12}>
+                <Switch>
+                  <Route exact path={["/", "/home"]}>
+                    <Home />
+                  </Route>
+                  <Route exact path={["/explore"]}>
+                    <Explore />
+                  </Route>
+                  <Route exact path={["/individual"]}>
+                    <IndividualPlant />
+                  </Route>
+                  <Route exact path={["/form"]}>
+                    <Form />
+                  </Route>
+                  <Route exact path={["/login", "/signup"]}>
+                    <Auth
+                      user={user}
+                      loginUser={loginUser}
+                      signupUser={signupUser}
+                    />
+                  </Route>
+                </Switch>
+              </Grid>
             </Grid>
-            <Grid item xs={12}>
-              {error && <Error error={error} clearError={clearError} />}
-            </Grid>
-            <Grid item xs={12}>
-              <Switch>
-                <Route exact path={["/", "/home"]}>
-                  <Home />
-                </Route>
-                <Route exact path={["/explore"]}>
-                  <Explore />
-                </Route>
-                <Route exact path={["/requirements"]}>
-                  <Requirements />
-                </Route>
-                <Route exact path={["/individual"]}>
-                  <IndividualPlant />
-                </Route>
-                <Route exact path={["/form"]}>
-                  <Form/>
-                </Route>
-                <PrivateRoute exact user={user} path={["/forum"]}>
-                  <Forum user={user} />
-                </PrivateRoute>
-                <Route exact path={["/login", "/signup"]}>
-                  <Auth
-                    user={user}
-                    loginUser={loginUser}
-                    signupUser={signupUser}
-                  />
-                </Route>
-              </Switch>
-            </Grid>
-          </Grid>
-        </Container>
-      </Router>
+          </Container>
+        </Router>
+      </ThemeProvider>
     </>
   );
 }
