@@ -53,6 +53,7 @@ function FormPlant() {
     API.Plant.create({ ...formObject, GenusId: selectedGenus, SpeciesId: selectedSpecies, date: selectedDate }).then(res => {
     }).catch(err => {
     })
+    window.location.reload(false)
   }
 
   const uploadImage = async e => {
@@ -158,7 +159,7 @@ function FormPlant() {
               <Grid item xs={12}>
                 <TextField
                   required
-                  defaultValue="$ "
+                  defaultValue=""
                   id="standard-required"
                   label="Price paid in USD"
                   name="price"
@@ -186,7 +187,7 @@ function FormPlant() {
                   <KeyboardDatePicker
                     disableToolbar
                     variant="inline"
-                    format="MM/dd/yyyy"
+                    format="MM/DD/yyyy"
                     margin="normal"
                     id="date-picker-inline"
                     name="date"
