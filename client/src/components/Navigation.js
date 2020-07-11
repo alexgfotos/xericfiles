@@ -2,6 +2,7 @@ import React from "react";
 import { Button, AppBar, Toolbar } from '@material-ui/core';
 import { Link } from "react-router-dom";
 
+
 function Navigation(props) {
   const { user, logoutUser } = props;
 

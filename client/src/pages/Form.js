@@ -7,7 +7,7 @@ function Form(props) {
 
     return (
         <>
-            <Grid container spacing={5}>
+            <Grid container spacing={12}>
                 <Grid item xs={12}>
                     <FormPlant/>
                 </Grid>

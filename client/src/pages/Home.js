@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
         color: theme.palette.text.secondary,
     },
     media: {
-        height:200,
+        height:500,
     }
 }));
 
@@ -30,30 +30,27 @@ export default function FullWidthGrid() {
     return (
         <div className={classes.root}>
             <Grid container spacing={1}>
-                <Grid item xs={12} sm={6}>
+                <Grid item xs={12} sm={8}>
+                    
                     <Card className={classes.root}>
                         <CardActionArea>
+                            
                             <CardMedia
                                 className={classes.media}
                                 image="/static/assets/cactus-home.png"
                                 title="Contemplative Reptile"
                             />
-                            <CardContent>
-                                <Typography gutterBottom variant="h5" component="h2">
-                                    Lizard
-          </Typography>
-                                <Typography variant="body2" color="textSecondary" component="p">
-                                    Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
-                                    across all continents except Antarctica
-          </Typography>
-                            </CardContent>
+                          
                         </CardActionArea>
 
                     </Card>
 
                 </Grid>
-                <Grid item xs={12} sm={6}>
-                    <Paper className={classes.paper}>xs=12 sm=6</Paper>
+                <Grid item xs={12} sm={4}>
+                    <Paper> 
+                        <Typography variant="body2" color="textSecondary" component="p">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    </Typography>
+                    </Paper>
                 </Grid>
             </Grid>
         </div>

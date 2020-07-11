@@ -1,3 +1,4 @@
+import '../../src/style.css'
 export { default as Navigation } from "./Navigation";
 export { default as PostTable } from "./PostTable";
 export { default as PostForm } from "./PostForm";
