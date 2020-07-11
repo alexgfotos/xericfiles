@@ -2,9 +2,10 @@ import React, { useEffect, useState } from "react";
 import { Container, Grid, Button, TextField, Paper, Typography, TextareaAutosize } from '@material-ui/core';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import axios from "axios";
-import DateFnsUtils from '@date-io/date-fns';
+import MomentUtils from "@date-io/moment"
 import { MuiPickersUtilsProvider, KeyboardDatePicker, } from '@material-ui/pickers';
 import API from '..//utils/API';
+
 
 function FormPlant() {
   //states used to define our plant
@@ -180,7 +181,7 @@ function FormPlant() {
                 />
               </Grid>
 
-              <MuiPickersUtilsProvider utils={DateFnsUtils}>
+              <MuiPickersUtilsProvider utils={MomentUtils}>
                 <Grid item xs={12}>
                   <KeyboardDatePicker
                     disableToolbar
