@@ -130,7 +130,7 @@ function FormPlant() {
                   renderInput={(params) => <TextField {...params} label="Select the genus" variant="outlined" />}
                   loading={true}
                   getOptionLabel={(option) => option.genus}
-                  onChange={(e, value) => setSelectedGenus(value.id)}
+                  onChange={(e, value) => setSelectedGenus(value?.id)}
                 >
                 </Autocomplete>
               </Grid>
@@ -143,7 +143,7 @@ function FormPlant() {
                   options={speciesOptions}
                   renderInput={(params) => <TextField {...params} label="Select the species" variant="outlined" />}
                   loading={true}
-                  onChange={(e, value) => setSelectedSpecies(value.id)}
+                  onChange={(e, value) => setSelectedSpecies(value?.id)}
                   getOptionLabel={(option) => option.species}
                 >
                 </Autocomplete>
