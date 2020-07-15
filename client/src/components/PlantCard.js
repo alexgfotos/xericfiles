@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect,  useState } from 'react';
+
 import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import Card from '@material-ui/core/Card';
@@ -14,6 +15,7 @@ import { red } from '@material-ui/core/colors';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import VirtualizedList from "./VirtualizedList";
+import API from "../utils/API"
 
 
 
@@ -43,10 +45,46 @@ const useStyles = makeStyles((theme) => ({
 export default function RecipeReviewCard() {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
+  const [plant, setPlant] = useState({});
+  const [plants, setPlants] = useState([]);
+  const [plantIndex, setPlantIndex] = useState(0);
+
+  useEffect(()=>{
+    loadPlants();
+  },[]);
+
+  function nextPlant(PlantIndex) {
+    // Ensure that the user index stays within our range of users
+    if (plantIndex >= plants.length) {
+      plantIndex = 0;
+    }
+    setPlant(plants[plantIndex]);
+    setPlantIndex(plantIndex);
+  }
+
+  function previousPlant(plantIndex) {
+    // Ensure that the user index stays within our range of users
+    if (plantIndex < 0) {
+      plantIndex = plants.length - 1;
+    }
+    setPlant(plants[plantIndex]);
+    setPlantIndex(plantIndex);
+  }
+
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
+
+  function loadPlants(){
+    API.Plant.getAll()
+    .then(plants =>{
+      console.log(plants);
+      setPlants(plants);
+      setPlant(plants[0]);
+    })
+    .catch(err => console.log(err));
+  }
 
   return (
 
@@ -60,7 +98,7 @@ export default function RecipeReviewCard() {
             <MoreVertIcon />
           </IconButton>
         }
-        title="Ariocarpus Fissuratus"
+        title="{plant.data[0].id}"
         subheader="Family: Cactaceae"
       />
       <CardMedia
