@@ -6,14 +6,14 @@ const isAuthenticated = require("../../config/middleware/isAuthenticated");
  * Post - Read All
  */
 router.get("/", function (req, res) {
-    db.Plant.findAll()
+    db.Image.findAll()
         .then(dbModel => res.json(dbModel))
         .catch(err => res.status(422).json(err));
 });
 
 
 router.get("/:id",  function (req, res) {
-    db.Plant.findById(req.params.id)
+    db.Image.findById(req.params.id)
         .then(dbModel => res.json(dbModel))
         .catch(err => res.status(422).json(err));
 });
@@ -26,14 +26,11 @@ router.post("/", isAuthenticated,  function (req, res) {
     if(req.user === null || req.user.id === null){
         res.status(401).json("NOT AUTHORIZED");
     }
-    db.Plant.create({
-        ...req.body,
-        UserId: req.user.id
+    console.log(req.body)
+    db.Image.create({
+        ...req.body
     })
-        .then(dbModel => {
-            console.log(dbModel)
-            res.json(dbModel)
-        })
+        .then(dbModel => res.json(dbModel))
         .catch(err => res.status(422).json(err));
 });
 
@@ -41,7 +38,7 @@ router.post("/", isAuthenticated,  function (req, res) {
  * Post - Update
  */
 router.put("/:id", isAuthenticated, function (req, res) {
-  db.Plant.update(req.body, { where: { id: req.params.id } })
+  db.Image.update(req.body, { where: { id: req.params.id } })
     .then(dbModel => res.json(dbModel))
     .catch(err => res.status(422).json(err));
 });
@@ -50,7 +47,7 @@ router.put("/:id", isAuthenticated, function (req, res) {
  * Post - Delete
  */
 router.delete("/:id", isAuthenticated, function (req, res) {
-  db.Plant.destroy({ where: { id: req.params.id } })
+  db.Image.destroy({ where: { id: req.params.id } })
     .then(dbModel => res.json(dbModel))
     .catch(err => res.status(422).json(err));
 });
