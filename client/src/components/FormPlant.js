@@ -17,7 +17,8 @@ function FormPlant() {
   const initialFormState = { name: "", width: "", price: "" };
   const [formObject, setFormObject] = useState(initialFormState)
   const [image, setImage] = useState("");
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
+  const [plantId, setPlantId] = useState("")
 
 
 
@@ -48,12 +49,16 @@ function FormPlant() {
 
 
   //when submit is hit, create plant in db by sending it an object created from the states in the form.
-  const handlePlantSubmit = async (event) => {
+  const handlePlantSubmit = (event) => {
     event.preventDefault();
     API.Plant.create({ ...formObject, GenusId: selectedGenus, SpeciesId: selectedSpecies, date: selectedDate }).then(res => {
+      console.log(res)
+      API.Image.create({ image: image, GenusId: selectedGenus, SpeciesId: selectedSpecies, PlantId: res.data.id }).then(res => {
+      })
     }).catch(err => {
     })
-    window.location.reload(false)
+    console.log(image)
+    // window.location.reload(false)
   }
 
   const uploadImage = async e => {
@@ -203,20 +208,20 @@ function FormPlant() {
               </MuiPickersUtilsProvider>
 
               <Grid item xs={12}>
-                  <input
-                    type="file"
-                    name="file"
-                    placeholder="Upload an image"
-                    onChange={uploadImage}
-                    style={{ width: 200 }}
-                  />
-                  {loading ? (
-                    <h3>Loading..</h3>
-                  ) : (
-                      <Grid item xs={12} >
-                        <img src={image} style={{ width: "200px" }} />
-                      </Grid>
-                    )}
+                <input
+                  type="file"
+                  name="file"
+                  placeholder="Upload an image"
+                  onChange={uploadImage}
+                  style={{ width: 200 }}
+                />
+                {loading ? (
+                  <h3>Loading..</h3>
+                ) : (
+                    <Grid item xs={12} >
+                      <img src={image} style={{ width: "200px" }} />
+                    </Grid>
+                  )}
               </Grid>
 
               <Grid item xs={12}>
