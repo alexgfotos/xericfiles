@@ -1,6 +1,4 @@
-import React, { useEffect, useState } from "react";
-// import API from "../../utils/API";
-// import UserContext from "../../utils/plantContext";
+import React from "react";
 import PlantCard from "../../components/PlantCard"
 import { Grid, Button } from "@material-ui/core";
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';

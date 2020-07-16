@@ -1,5 +1,4 @@
 import React, { useEffect,  useState } from 'react';
-
 import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import Card from '@material-ui/core/Card';
@@ -14,10 +13,8 @@ import Typography from '@material-ui/core/Typography';
 import { red } from '@material-ui/core/colors';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
-import VirtualizedList from "./VirtualizedList";
+import InteractiveList from "./InteractiveList";
 import API from "../utils/API"
-
-
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -43,14 +40,18 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function RecipeReviewCard() {
+
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
   const [plant, setPlant] = useState({});
   const [plants, setPlants] = useState([]);
   const [plantIndex, setPlantIndex] = useState(0);
+  const [image, setImage] = useState({});
+  const [images, setImages] = useState([]);
 
   useEffect(()=>{
     loadPlants();
+    loadImage();
   },[]);
 
   function nextPlant(PlantIndex) {
@@ -80,8 +81,20 @@ export default function RecipeReviewCard() {
     API.Plant.getAll()
     .then(plants =>{
       console.log(plants);
+
       setPlants(plants);
-      setPlant(plants[0]);
+      setPlant(plants.data[0]);
+    })
+    .catch(err => console.log(err));
+  }
+
+  function loadImage(){
+    API.Image.getAll()
+    .then(images =>{
+      console.log(images);
+
+      setImages(images);
+      setImage(images.data[0].image);
     })
     .catch(err => console.log(err));
   }
@@ -98,17 +111,19 @@ export default function RecipeReviewCard() {
             <MoreVertIcon />
           </IconButton>
         }
-        title="{plant.data[0].id}"
-        subheader="Family: Cactaceae"
+        //Name
+        title= "Genus and Species"
+        //Nickname
+        subheader={plant.name} 
       />
       <CardMedia
 
         className={classes.media}
-        image="https://pics.davesgarden.com/pics/2011/04/02/Xenomorf/c8008f.jpg"
+        image= {image} 
         title="plant image"
       />
       <CardContent>
-      <VirtualizedList/>
+      <InteractiveList/>
         <Typography variant="body2" color="textSecondary" component="p">
           This cactus consists of many small tubercles growing from a large tap root. They are usually solitary, rarely giving rise to side shoots from old areoles.
         </Typography>
