@@ -36,9 +36,6 @@ export default function InteractiveList() {
     <div className={classes.root}>
       <Grid container spacing={2} >
         <Grid item xs={6} md={6}>
-          <Typography variant="h6" className={classes.title}>
-            Text only
-          </Typography>
           <div className={classes.demo}>
             <List>
               {generate(
@@ -53,9 +50,6 @@ export default function InteractiveList() {
         </Grid>
 
         <Grid item xs={6} md={6}>
-          <Typography variant="h6" className={classes.title}>
-            Text only
-          </Typography>
           <div className={classes.demo}>
             <List>
               {generate(
