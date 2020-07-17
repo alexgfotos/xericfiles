@@ -6,7 +6,7 @@ const isAuthenticated = require("../../config/middleware/isAuthenticated");
  * Post - Read All
  */
 router.get("/", function (req, res) {
-    db.Plant.findAll()
+    db.Plant.findAll({ where: req.query })
         .then(dbModel => res.json(dbModel))
         .catch(err => res.status(422).json(err));
 });

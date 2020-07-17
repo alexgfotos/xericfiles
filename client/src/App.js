@@ -14,6 +14,7 @@ import API from './utils/API';
 import Explore from './pages/Explore/Explore';
 import IndividualPlant from './pages/IndividualPlant';
 import Form from './pages/Form';
+import UserHome from './pages/UserHome'
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 
 const theme = createMuiTheme({
@@ -88,8 +89,9 @@ function App() {
               </Grid>
               <Grid item xs={12}>
                 <Switch>
-                  <Route exact path={["/", "/home"]}>
-                    <Home />
+              
+                  <Route exact path={["/", "/home"]}>           
+                    <UserHome user={user}/>
                   </Route>
                   <Route exact path={["/explore"]}>
                     <Explore />
@@ -97,7 +99,10 @@ function App() {
                   <Route exact path={["/individual"]}>
                     <IndividualPlant />
                   </Route>
-                  <Route exact path={["/form"]}>
+                  <Route exact path={["/userhome"]}>
+                    <UserHome />
+                    </Route>
+                    <Route exact path={["/form"]}>
                     <Form />
                   </Route>
                   <Route exact path={["/login", "/signup"]}>
