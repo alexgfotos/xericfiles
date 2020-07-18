@@ -58,7 +58,7 @@ function FormPlant() {
     }).catch(err => {
     })
     console.log(image)
-    window.location.reload(false)
+   // window.location.reload(false)
   }
 
   const uploadImage = async e => {

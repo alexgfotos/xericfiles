@@ -42,18 +42,18 @@ function UserHome(props) {
     console.log(plants)
   }, [])
 
-  let cards = [];
-
-  plants.map(plant => {
+  let cards = []
+  plants.forEach(plant => {
     let currentPlant = {};
     currentPlant.name = plant.name;
     currentPlant.speciesId = plant.SpeciesId
-    images.forEach(image => {
-      plant.id === image.PlantId ? currentPlant.picture = image.image : currentPlant.picture = null
-
-    })
-    cards.push(currentPlant);
+    currentPlant.id = plant.id;
+   if(plant.Images.length){
+     currentPlant.picture=plant.Images[0].image
+   }
+   cards.push(currentPlant);
   })
+
 
   console.log(cards)
 
@@ -79,6 +79,10 @@ function UserHome(props) {
                 
                 </Link>
                 <Link to = "/individual">Click Here!</Link>
+                <Button component={Link} to = "/activity" >
+                    edit
+                </Button>
+
               </GridListTile>
             ))}
           </GridList>
