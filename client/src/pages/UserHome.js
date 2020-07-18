@@ -7,7 +7,7 @@ import { MuiPickersUtilsProvider, KeyboardDatePicker, } from '@material-ui/picke
 import API from '..//utils/API';
 import UserHomeNav from "../components/UserHomeNav";
 import GridList from '@material-ui/core/GridList';
-import Link from '@material-ui/core/Link';
+import { Link } from "react-router-dom"
 import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
 import ListSubheader from '@material-ui/core/ListSubheader';
@@ -48,10 +48,10 @@ function UserHome(props) {
     currentPlant.name = plant.name;
     currentPlant.speciesId = plant.SpeciesId
     currentPlant.id = plant.id;
-   if(plant.Images.length){
-     currentPlant.picture=plant.Images[0].image
-   }
-   cards.push(currentPlant);
+    if (plant.Images.length) {
+      currentPlant.picture = plant.Images[0].image
+    }
+    cards.push(currentPlant);
   })
 
 
@@ -68,21 +68,19 @@ function UserHome(props) {
             </GridListTile >
             {cards.map((plant, index) => (
               <GridListTile style={{ marginBottom: "18px" }} key={index}>
-                <Link to="/individual">
-                  <img style={{width: "100%"}}src={plant.picture} alt={plant.name} />
+                <Link to={{
+
+                  pathname:"/individual",
+                  state: {
+                    plant: plant.id
+                  }
+                }}>
+                  <img style={{ width: "100%" }} src={plant.picture} alt={plant.name} />
                 </Link>
-                <Link to = "/individual">
                 <GridListTileBar
                   title={plant.name}
                   subtitle={<span>{plant.speciesId}</span>}
                 />
-                
-                </Link>
-                <Link to = "/individual">Click Here!</Link>
-                <Button component={Link} to = "/activity" >
-                    edit
-                </Button>
-
               </GridListTile>
             ))}
           </GridList>

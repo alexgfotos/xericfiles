@@ -17,6 +17,7 @@ import Form from './pages/Form';
 import UserHome from './pages/UserHome'
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 
+
 const theme = createMuiTheme({
   palette: {
     primary: {
@@ -108,9 +109,8 @@ function App() {
                   <Route exact path={["/explore"]}>
                     <Explore />
                   </Route>
-                  <Route exact path={["/individual"]}>
-                    <IndividualPlant />
-                  </Route>
+                  <Route exact path={["/individual"]} component={IndividualPlant}/>
+                    
                   <Route exact path={["/userhome"]}>
                     <UserHome />
                   </Route>
