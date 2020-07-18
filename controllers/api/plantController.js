@@ -23,7 +23,9 @@ router.get("/", function (req, res) {
 
 
 router.get("/:id",  function (req, res) {
-    db.Plant.findById(req.params.id)
+    db.Plant.findByPk(req.params.id, {
+        include: [db.Image]
+    })
         .then(dbModel => res.json(dbModel))
         .catch(err => res.status(422).json(err));
 });

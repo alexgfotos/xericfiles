@@ -31,38 +31,36 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function PlantCard() {
+export default function PlantCard(props) {
 
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
   const [plant, setPlant] = useState({});
   const [plants, setPlants] = useState([]);
   const [plantIndex, setPlantIndex] = useState(0);
-  const [image, setImage] = useState({});
-  const [images, setImages] = useState([]);
   const [genus, setGenusOptions] = useState([]);
   const [species, setSpeciesOptions] = useState([]);
 
 
   useEffect(() => {
     loadPlants();
-    loadImage();
+   
   }, []);
 
   useEffect(() => {
 
     async function getSpecies() {
 
-      const spec = await axios.get("/api/species/" + plants[0].SpeciesId)
+      const spec = await axios.get("/api/species/" + plant.SpeciesId)
       console.log(spec);
 
       setSpeciesOptions(spec.data);
 
     }
-    if (plants.length) {
+    if (plant.id) {
       getSpecies();
     }
-  }, [plants])
+  }, [plant])
 
   useEffect(() => {
 
@@ -81,23 +79,23 @@ export default function PlantCard() {
   }, [species])
 
 
-  function nextPlant(plantIndex) {
-    // Ensure that the user index stays within our range of users
-    if (plantIndex >= plants.length) {
-      plantIndex = 0;
-    }
-    setPlant(plants[plantIndex]);
-    setPlantIndex(plantIndex);
-  }
+  // function nextPlant(plantIndex) {
+  //   // Ensure that the user index stays within our range of users
+  //   if (plantIndex >= plants.length) {
+  //     plantIndex = 0;
+  //   }
+  //   setPlant(plants[plantIndex]);
+  //   setPlantIndex(plantIndex);
+  // }
 
-  function previousPlant(plantIndex) {
-    // Ensure that the user index stays within our range of users
-    if (plantIndex < 0) {
-      plantIndex = plants.length - 1;
-    }
-    setPlant(plants[plantIndex]);
-    setPlantIndex(plantIndex);
-  }
+  // function previousPlant(plantIndex) {
+  //   // Ensure that the user index stays within our range of users
+  //   if (plantIndex < 0) {
+  //     plantIndex = plants.length - 1;
+  //   }
+  //   setPlant(plants[plantIndex]);
+  //   setPlantIndex(plantIndex);
+  // }
 
 
   const handleExpandClick = () => {
@@ -105,24 +103,15 @@ export default function PlantCard() {
   };
 
   function loadPlants() {
-    API.Plant.getAll()
-      .then(plants => {
-
-        setPlants(plants.data);
-        setPlant(plants.data[0]);
+    API.Plant.getById(props.plantId.plant)
+      .then(plant => {
+       console.log(plant, "this is the plant!")
+          setPlant(plant.data);
+      
       })
       .catch(err => console.log(err));
   }
 
-  function loadImage() {
-    API.Image.getAll()
-      .then(images => {
-
-        setImages(images);
-        setImage(images.data[0].image);
-      })
-      .catch(err => console.log(err));
-  }
 
 
 
@@ -133,7 +122,7 @@ export default function PlantCard() {
 
         <CardHeader
           avatar={
-            <Avatar alt="plant" src={image} className={classes.small} />
+            <Avatar alt="plant" src={plant.Images?.[0].image} className={classes.small} />
           }
           action={
             <IconButton aria-label="settings">
@@ -145,7 +134,7 @@ export default function PlantCard() {
         />
         <CardMedia
           className={classes.media}
-          image={image}
+          image={plant.Images?.[0].image}
           title="plant image"
         />
         <CardContent>
