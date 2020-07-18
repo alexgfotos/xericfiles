@@ -41,7 +41,7 @@ function FormPlant() {
       const spec = await axios.get(`/api/species?GenusId=${selectedGenus}`)
       console.log(spec);
 
-      setSpeciesOptions(spec.data);
+      setSpeciesOptions(spec.data); 
 
     }
     getSpecies()

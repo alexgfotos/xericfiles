@@ -17,7 +17,7 @@ router.get("/", function (req, res) {
 
 router.get("/:id",  function (req, res) {
 
-    db.Species.findById(req.params.id)
+    db.Species.findByPk(req.params.id)
         .then(dbModel => res.json(dbModel))
         .catch(err => res.status(422).json(err));
 });
