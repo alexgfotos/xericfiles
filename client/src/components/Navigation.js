@@ -17,7 +17,7 @@ function Navigation(props) {
 
           {user.email ?
             <>
-              <Button color="inherit">Logged in as: {user.email}</Button>
+              <Button color="inherit">{user.email}</Button>
               <Button component={Link} to="/home" onClick={logoutUser} color="inherit">Logout</Button>
             </>
             :

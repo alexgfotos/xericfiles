@@ -69,7 +69,7 @@ function UserHome(props) {
             {cards.map((plant, index) => (
               <GridListTile style={{ marginBottom: "18px" }} key={index}>
                 <Link to="/individual">
-                  <img src={plant.picture} alt={plant.name} />
+                  <img style={{width: "100%"}}src={plant.picture} alt={plant.name} />
                 </Link>
                 <Link to = "/individual">
                 <GridListTileBar
