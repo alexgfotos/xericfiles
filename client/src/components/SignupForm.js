@@ -7,6 +7,7 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import NativeSelect from '@material-ui/core/NativeSelect';
 import MenuItem from '@material-ui/core/MenuItem';
+import Image from 'material-ui-image'
 
 const useStyles = makeStyles((theme) => ({
     button: {
@@ -28,7 +29,7 @@ function SignupForm(props) {
     const [openState, setOpenState] = React.useState(false);
 
     const unitedStatesList = ['Alabama', 'Alaska', 'American Samoa', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'District of Columbia', 'Federated States of Micronesia', 'Florida', 'Georgia', 'Guam', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Marshall Islands', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota', 'Northern Mariana Islands', 'Ohio', 'Oklahoma', 'Oregon', 'Palau', 'Pennsylvania', 'Puerto Rico', 'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virgin Island', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming']
-    
+
     // const handleChange = (event) => {
     //     setAge(event.target.value);
     // };
@@ -52,9 +53,9 @@ function SignupForm(props) {
     return (
         <>
             <Paper>
-                <Container maxWidth="sm">
+                <Container >
                     <form>
-                        <Grid container spacing={3}>
+                        <Grid container spacing={3} item xs={6}>
                             <Grid item xs={12}>
                                 <Typography variant="h4" gutterBottom>
                                     Signup
@@ -107,6 +108,7 @@ function SignupForm(props) {
                                     onOpen={handleOpenZone}
                                     value={formObject.zone}
                                     onChange={handleInputChange}
+                                    
                                 >
                                     <MenuItem value="">
                                         <em>None</em>
@@ -195,7 +197,7 @@ function SignupForm(props) {
                                 /> */}
                             </Grid>
                             <Grid item xs={12}>
-                                <Button variant="contained" color="primary" type="submit" onClick={handleFormSubmit}>
+                                <Button variant="contained" color="primary-light" type="submit" onClick={handleFormSubmit}>
                                     Signup
                                 </Button>
                             </Grid>
@@ -203,6 +205,13 @@ function SignupForm(props) {
                     </form>
                 </Container>
             </Paper>
+            <Grid item xs={3} spacing={1}>
+                <Image height="10" src="https://cvws.icloud-content.com/S/ASg_64wE-JeB4dUlRJFGDFZup14J/IMG_1800.JPG?o=AmhVjRRvbZRHRHcCenGEYN7v1zrV3Pf3lRCSWb2NXSBg&v=1&z=https%3A%2F%2Fp34-content.icloud.com%3A443&x=1&a=CAog4_7yukj6Gwuar58GssTMnkMueXxHXhg8Dd59fvgNEmoSYxDk3sSZti4Y5PXXnrYuIgEAUgRup14JaiTatAT5a1vu5qN-FCBTf36puJDaQU_5mKZCZskKVyAxGSJSUGRyJHRqXVB0zjOGwj5c4m7IeqbnIibf3R3mJSN60Z7zSNUbhnNB9Q&e=1595107834&r=ec0de95a-7e4e-4c3e-825c-e55592621f6e-1&s=l3iFjnqwTwsSC3KxdYkcf-8Dy0E" />
+                <Image height="10" src="https://cvws.icloud-content.com/S/AT2-tVcnKQvZkKqDWB5hSjcQloci/IMG_1805.JPG?o=Auu5nCcZSl6m1Ft1Vy4_HUZ6BlIlT5oDeNtw4ZE8F1FG&v=1&z=https%3A%2F%2Fp34-content.icloud.com%3A443&x=1&a=CAogZ8pPIxCQJ3EsXszpRNAA_gykWe48Y-RoNDesxEYu0KMSYxDRiMWZti4Y0Z_YnrYuIgEAUgQQlociaiTptw77hctrXhfoMNXNsQpoKJBUM_aqFPET4BaSTcSppuk0rGByJDbfO39wd1k5-uMkv3EN0WOIq11VG6wQmQqU2xmL9EekA6GoCA&e=1595107839&r=14b519f1-0f49-48d7-bddd-8e3f295acf96-2&s=_FI6brfgPKADOFTiWOnmx4J-P3A" />
+                <Image height="10" src="https://cvws.icloud-content.com/S/AXZiJEuk2EVb_JmZpxDm03JoHhAj/IMG_1811.JPG?o=AgMBmMhhlsQJse7PYmjeth3ENs1bhzrx-KuHlDQRaG2-&v=1&z=https%3A%2F%2Fp34-content.icloud.com%3A443&x=1&a=CAogyVVGjQbP5XhDewTLAVIesyokLwpP1lMyBc3jkfMn-kcSYxCexcWZti4YntzYnrYuIgEAUgRoHhAjaiStCjuBrNXjoA0YtuqTfBqo5MaD8LSo-WcEj4X2eyMMAR1jCI5yJAbV_qeJkCqOIOOLAvRt62m9_3tnGCFa55urcC4xA8YKAqb65Q&e=1595107847&r=5aca3c86-9b91-42d9-a82f-3ea88d11d549-1&s=kYqG6JPPiVbIOOqYKZwXYfmbAHA" />
+            </Grid>
+
+
         </>
     )
 }
