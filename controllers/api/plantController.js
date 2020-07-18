@@ -6,7 +6,8 @@ const isAuthenticated = require("../../config/middleware/isAuthenticated");
  * Post - Read All
  */
 router.get("/", function (req, res) {
-    db.Plant.findAll({ where: req.query })
+    console.log(req.query);
+    db.Plant.findAll({ where: {UserId:req.query.UserId }, include: [db.Image]})
         .then(dbModel => res.json(dbModel))
         .catch(err => res.status(422).json(err));
 });
