@@ -7,10 +7,19 @@ const isAuthenticated = require("../../config/middleware/isAuthenticated");
  */
 router.get("/", function (req, res) {
     console.log(req.query);
-    db.Plant.findAll({ where: {UserId:req.query.UserId }, include: [db.Image]})
+    if(req.query.UserId){
+        db.Plant.findAll({ where: {UserId:req.query.UserId }, include: [db.Image]})
         .then(dbModel => res.json(dbModel))
         .catch(err => res.status(422).json(err));
+    }else{
+        db.Plant.findAll()
+        .then(dbModel => res.json(dbModel))
+        .catch(err => res.status(422).json(err));
+    }
+   
 });
+
+
 
 
 router.get("/:id",  function (req, res) {
