@@ -58,6 +58,7 @@ function FormPlant() {
     }).catch(err => {
     })
     console.log(image)
+
    // window.location.reload(false)
   }
 
