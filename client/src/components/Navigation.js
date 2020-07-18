@@ -12,13 +12,14 @@ function Navigation(props) {
         <Toolbar >
           <Button component={Link} to="/home" color="inherit">Home</Button>
           <Button component={Link} to="/explore" color="inherit">Explore</Button>
-          <Button component={Link} to="/form" color="inherit">Add Plant</Button>
+         
           
 
           {user.email ?
             <>
               <Button color="inherit">{user.email}</Button>
               <Button component={Link} to="/home" onClick={logoutUser} color="inherit">Logout</Button>
+              <Button component={Link} to="/form" color="inherit">Add Plant</Button>
             </>
             :
             <>
