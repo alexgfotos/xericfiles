@@ -38,7 +38,7 @@ export default function FullWidthGrid() {
                             <CardMedia
                                 className={classes.media}
                                 image="/static/assets/cactus-home.png"
-                                title="Contemplative Reptile"
+                                title="Fluffy Cactus"
                             />
                           
                         </CardActionArea>

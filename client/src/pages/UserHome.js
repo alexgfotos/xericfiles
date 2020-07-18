@@ -15,6 +15,7 @@ import IconButton from '@material-ui/core/IconButton';
 import GitHubIcon from '@material-ui/icons/GitHub';
 
 
+
 function UserHome(props) {
   const [plants, setPlants] = useState([]);
   const [images, setImages] = useState([]);
@@ -67,11 +68,17 @@ function UserHome(props) {
             </GridListTile >
             {cards.map((plant, index) => (
               <GridListTile style={{ marginBottom: "18px" }} key={index}>
-                <img src={plant.picture} alt={plant.name} />
+                <Link to="/individual">
+                  <img src={plant.picture} alt={plant.name} />
+                </Link>
+                <Link to = "/individual">
                 <GridListTileBar
                   title={plant.name}
                   subtitle={<span>{plant.speciesId}</span>}
                 />
+                
+                </Link>
+                <Link to = "/individual">Click Here!</Link>
               </GridListTile>
             ))}
           </GridList>

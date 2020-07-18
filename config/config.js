@@ -1,14 +1,14 @@
 module.exports={
     "development": {
       "username": "root",
-      "password": process.env.PASSWORD,
+      "password": "Daniela8!",
       "database": "xeric_files",
       "host": "127.0.0.1",
       "dialect": "mysql"
     },
     "test": {
       "username": "root",
-      "password": process.env.PASSWORD,
+      "password": "Daniela8!",
       "database": "xeric_files_test",
       "host": "127.0.0.1",
       "dialect": "mysql"

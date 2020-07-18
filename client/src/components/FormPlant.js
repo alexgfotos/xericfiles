@@ -41,7 +41,7 @@ function FormPlant() {
       const spec = await axios.get(`/api/species?GenusId=${selectedGenus}`)
       console.log(spec);
 
-      setSpeciesOptions(spec.data);
+      setSpeciesOptions(spec.data); 
 
     }
     getSpecies()
@@ -111,17 +111,20 @@ function FormPlant() {
 
   return (
     <>
-      <Paper>
-        <Container >
-          <form>
-            <Grid container spacing={2} direction="column" justify="center" alignItems="center" >
-              <Grid item xs={12} >
+
+      <Container >
+        <form >
+          <Paper >
+            <Grid container spacing={2} direction="column" justify="center" alignItems="center" maxWidth="200">
+              <Grid item xs={6} >
+
                 <Typography variant="h4" gutterBottom>
                   Add a Plant
                 </Typography>
+
               </Grid>
 
-              <Grid item xs={12}>
+              <Grid item xs={6}>
                 <Autocomplete
                   style={{ width: 200 }}
                   id={"genus"}
@@ -135,7 +138,7 @@ function FormPlant() {
                 </Autocomplete>
               </Grid>
 
-              <Grid item xs={12}>
+              <Grid item xs={6}>
                 <Autocomplete
                   style={{ width: 200 }}
                   id={"species"}
@@ -149,7 +152,7 @@ function FormPlant() {
                 </Autocomplete>
               </Grid>
 
-              <Grid item xs={12}>
+              <Grid item xs={6}>
                 <TextField
                   required
                   id="standard-required"
@@ -161,7 +164,7 @@ function FormPlant() {
                 />
               </Grid>
 
-              <Grid item xs={12}>
+              <Grid item xs={6}>
                 <TextField
                   required
                   defaultValue=""
@@ -173,7 +176,7 @@ function FormPlant() {
                 />
               </Grid>
 
-              <Grid item xs={12}>
+              <Grid item xs={6}>
                 <TextField
                   required
                   id="standard-required"
@@ -188,7 +191,7 @@ function FormPlant() {
               </Grid>
 
               <MuiPickersUtilsProvider utils={MomentUtils}>
-                <Grid item xs={12}>
+                <Grid item xs={6}>
                   <KeyboardDatePicker
                     disableToolbar
                     variant="inline"
@@ -207,7 +210,7 @@ function FormPlant() {
                 </Grid>
               </MuiPickersUtilsProvider>
 
-              <Grid item xs={12}>
+              <Grid item xs={6}>
                 <input
                   type="file"
                   name="file"
@@ -218,33 +221,35 @@ function FormPlant() {
                 {loading ? (
                   <h3>Loading..</h3>
                 ) : (
-                    <Grid item xs={12} >
+                    <Grid item xs={6} >
                       <img src={image} style={{ width: "200px" }} />
                     </Grid>
                   )}
               </Grid>
 
-              <Grid item xs={12}>
+              <Grid item xs={6}>
                 <h3>Notes:</h3>
                 <TextareaAutosize
                   aria-label="empty textarea"
                   placeholder="type notes here ..."
                   name="notes"
-                  style={{ width: 400, height: 100, fontFamily: "sans-serif", fontSize: "12px" }}
+                  style={{  width: 300, height: 100, fontFamily: "sans-serif", fontSize: "12px" }}
                   onChange={handleInputChange}
                 />
               </Grid>
 
-              <Grid item xs={12}>
+              <Grid item xs={6}>
                 <Button variant="contained" color="primary" type="submit" onClick={handlePlantSubmit} spacing={4}>
                   Submit
                 </Button>
               </Grid>
+``
+          </Grid>
+          </Paper>
+          
+        </form>
+      </Container>
 
-            </Grid>
-          </form>
-        </Container>
-      </Paper>
     </>
   )
 }
