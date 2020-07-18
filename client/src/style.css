@@ -1,3 +1,24 @@
 body {
     background-color: #EAFDCF;
 }
+.MuiGrid-root .MuiPaper-root {
+    background-color:#BCD39C;
+    
+}
+.MuiAutocomplete-hasPopupIcon.MuiAutocomplete-hasClearIcon .MuiAutocomplete-inputRoot {
+    background-color: white;
+    
+}
+.MuiFormControl-root {
+    background-color: white;
+   
+}
+@media (max-width:640px){
+    .MuiAutocomplete-root, 
+    .MuiTextField-root,
+  
+    {
+        width:100px !important;
+    }
+}
+
