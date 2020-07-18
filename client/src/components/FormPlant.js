@@ -20,7 +20,15 @@ function FormPlant() {
   const [loading, setLoading] = useState(false);
   const [plantId, setPlantId] = useState("")
 
-
+ function clearState(){
+  setGenusOptions([])
+  setSelectedGenus([])
+  setSelectedSpecies([])
+  setSpeciesOptions([])
+  setSelectedDate([])
+  setFormObject(initialFormState)
+  setImage("")
+ }
 
   useEffect(() => {
     // on site load, get all genera using the api call/route
@@ -51,13 +59,17 @@ function FormPlant() {
   //when submit is hit, create plant in db by sending it an object created from the states in the form.
   const handlePlantSubmit = (event) => {
     event.preventDefault();
-    API.Plant.create({ ...formObject, GenusId: selectedGenus, SpeciesId: selectedSpecies, date: selectedDate }).then(res => {
+    if (image) {API.Plant.create({ ...formObject, GenusId: selectedGenus, SpeciesId: selectedSpecies, date: selectedDate }).then(res => {
       console.log(res)
       API.Image.create({ image: image, GenusId: selectedGenus, SpeciesId: selectedSpecies, PlantId: res.data.id }).then(res => {
       })
     }).catch(err => {
     })
-    console.log(image)
+    setTimeout(function (){
+      window.location.reload(false)
+    }, 3000)
+    console.log(image)}
+    else alert("image required!")
 
    // window.location.reload(false)
   }
