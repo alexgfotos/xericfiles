@@ -1,20 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
-import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
-import CardMedia from '@material-ui/core/CardMedia';
-import CardContent from '@material-ui/core/CardContent';
-import CardActions from '@material-ui/core/CardActions';
-import Collapse from '@material-ui/core/Collapse';
-import Avatar from '@material-ui/core/Avatar';
-import { Button } from '@material-ui/core';
-import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
+import {Grid, ListItemText, Card, CardHeader, CardMedia, CardContent, CardActions, Collapse, Avatar, IconButton, Typography } from '@material-ui/core';
 import { red } from '@material-ui/core/colors';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
-import InteractiveList from "./InteractiveList";
 import API from "../utils/API"
 import axios from "axios"
 
@@ -60,36 +50,35 @@ export default function PlantCard() {
   }, []);
 
   useEffect(() => {
-    // on site load, get all genera using the api call/route
-    console.log(plants)
+
     async function getSpecies() {
 
-      const gen = await axios.get("/api/species/" + plants[0].SpeciesId)
-      console.log(gen);
+      const spec = await axios.get("/api/species/" + plants[0].SpeciesId)
+      console.log(spec);
 
-      setSpeciesOptions(gen.data);
+      setSpeciesOptions(spec.data);
 
     }
     if (plants.length) {
       getSpecies();
     }
-  }, [plants]) //this is staying to load on an empty state, which is on the initial page load
+  }, [plants])
 
   useEffect(() => {
 
     async function getGenus() {
-      // once genera are loaded, get species by genera ID using api call
-      const spec = await axios.get(`/api/species?GenusId=${species.GenusId}`)
-      console.log(spec);
 
-      setGenusOptions(spec.data);
+      const gen = await axios.get(`/api/species?GenusId=${species.GenusId}`)
+      console.log(gen);
+
+      setGenusOptions(gen.data);
 
     }
-    if (species){
+    if (species) {
       getGenus();
     }
-    
-  }, [species]) //this tells useEffect to load once the state "selectedGenus" exists
+
+  }, [species])
 
 
   function nextPlant(plantIndex) {
@@ -118,7 +107,6 @@ export default function PlantCard() {
   function loadPlants() {
     API.Plant.getAll()
       .then(plants => {
-        console.log(plants.data);
 
         setPlants(plants.data);
         setPlant(plants.data[0]);
@@ -129,7 +117,6 @@ export default function PlantCard() {
   function loadImage() {
     API.Image.getAll()
       .then(images => {
-        console.log(images);
 
         setImages(images);
         setImage(images.data[0].image);
@@ -138,32 +125,61 @@ export default function PlantCard() {
   }
 
 
+
   return (
 
     <Card className={classes.root} >
       <CardHeader
         avatar={
-          <Avatar alt="plant" src="https://e7.pngegg.com/pngimages/750/251/png-clipart-cactus-cactus-cartoon.png" className={classes.small} />
+          <Avatar alt="plant" src={image} className={classes.small} />
         }
         action={
           <IconButton aria-label="settings">
             <MoreVertIcon />
           </IconButton>
         }
-        //Name
-        title="Genus and Species"
-        //Nickname
+        title={"Species: " + species.species}
         subheader={plant.name}
       />
       <CardMedia
-
         className={classes.media}
         image={image}
         title="plant image"
       />
       <CardContent>
-        <InteractiveList />
-        <Typography variant="body2" color="textSecondary" component="p">
+        <Grid container spacing={2} >
+          <Grid item xs={6} md={6} container direction="column" justify="flex-start" alignItems="flex-start"  >
+            <ListItemText
+              primary={"Nickname: " + plant.name}
+            />
+            <ListItemText
+              primary={"Date: " + plant.date}
+            />
+            <ListItemText
+              primary={"Width: " + plant.width + " inches"}
+            />
+            <ListItemText
+              primary={"Price: $" + plant.price}
+            />
+
+          </Grid>
+
+          <Grid item xs={6} md={6} container direction="column" justify="center" alignItems="flex-start" >
+            <ListItemText
+              primary={"Genus: " + "g"}
+            />
+            <ListItemText
+              primary={"Species: " + species.species}
+            />
+            <ListItemText
+              primary="Single-line item"
+            />
+            <ListItemText
+              primary="Single-line item"
+            />
+          </Grid>
+        </Grid>
+        <Typography variant="body2" color="textSecondary">
           This cactus consists of many small tubercles growing from a large tap root. They are usually solitary, rarely giving rise to side shoots from old areoles.
         </Typography>
       </CardContent>

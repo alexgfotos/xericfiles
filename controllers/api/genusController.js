@@ -13,7 +13,7 @@ router.get("/", function (req, res) {
 
 
 router.get("/:id",  function (req, res) {
-  db.Genus.findById(req.params.id)
+  db.Genus.findByPk(req.params.id)
     .then(dbModel => res.json(dbModel))
     .catch(err => res.status(422).json(err));
 });
