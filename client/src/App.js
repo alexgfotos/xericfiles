@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   BrowserRouter as Router,
   Switch,
@@ -34,10 +34,22 @@ const theme = createMuiTheme({
   },
 });
 
+
+
 function App() {
   const [user, setUser] = useState({});
   const [error, setError] = useState("")
-
+  
+  useEffect(() => {
+    function getCurrentUser() {
+      API.Auth.user_data().then(res => {
+        if (res.data) {
+          setUser(res.data)
+        }
+      })
+    }
+    getCurrentUser()
+  }, [])
   function loginUser(email, password) {
     const data = {
       email: email,
@@ -89,9 +101,9 @@ function App() {
               </Grid>
               <Grid item xs={12}>
                 <Switch>
-              
-                  <Route exact path={["/", "/home"]}>           
-                    <UserHome user={user}/>
+
+                  <Route exact path={["/", "/home"]}>
+                    <UserHome user={user} />
                   </Route>
                   <Route exact path={["/explore"]}>
                     <Explore />
@@ -101,8 +113,8 @@ function App() {
                   </Route>
                   <Route exact path={["/userhome"]}>
                     <UserHome />
-                    </Route>
-                    <Route exact path={["/form"]}>
+                  </Route>
+                  <Route exact path={["/form"]}>
                     <Form />
                   </Route>
                   <Route exact path={["/login", "/signup"]}>
