@@ -62,7 +62,7 @@ function UserHome(props) {
       <Paper>
         <UserHomeNav></UserHomeNav>
         <Container >
-          <GridList cols={3} cellHeight={250}>
+          <GridList cols={3} cellHeight={350}>
             <GridListTile key="Subheader" cols={3} style={{ height: 'auto' }}>
               <Typography variant="h3" align="center" component="div">My Collection</Typography>
             </GridListTile >
