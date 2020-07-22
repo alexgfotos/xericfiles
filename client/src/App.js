@@ -117,7 +117,12 @@ function App() {
                   <Route exact path={["/form"]}>
                     <Form />
                   </Route>
-                  <Route exact path={["/login", "/signup"]}>
+                  
+                </Switch>
+              </Grid>
+              <Grid item xs={6} className="signupForm">
+                <Switch>
+                <Route exact path={["/login", "/signup"]}>
                     <Auth
                       user={user}
                       loginUser={loginUser}

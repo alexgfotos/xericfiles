@@ -13,7 +13,15 @@ body {
     background-color: white;
    
 }
-
+.signupForm{
+    position: relative;
+}
+.signupImageContainer{
+    position: absolute;
+    right:-50%;
+    top:0;
+    width:100%;
+}
 
 @media (max-width:640px){
     .MuiAutocomplete-root, 
@@ -21,6 +29,9 @@ body {
   
     {
         width:100px !important;
+    }
+    .signupImageContainer{
+        display:none
     }
 }
 
