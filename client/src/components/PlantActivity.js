@@ -12,7 +12,7 @@ import FormLabel from "@material-ui/core/FormLabel";
 import Radio from "@material-ui/core/Radio";
 
 
-function FormPlant() {
+function Activity() {
     //states used to define our plant
     const [genusOptions, setGenusOptions] = useState([]);
     const [selectedGenus, setSelectedGenus] = useState();
@@ -66,7 +66,7 @@ function FormPlant() {
         event.preventDefault();
         if (image) {API.Plant.update({ ...formObject, GenusId: selectedGenus, SpeciesId: selectedSpecies, date: selectedDate }).then(res => {
             console.log(res)
-            API.Image.create({ image: image, GenusId: selectedGenus, SpeciesId: selectedSpecies, PlantId: res.data.id }).then(res => {
+            API.Image.update({ image: image, GenusId: selectedGenus, SpeciesId: selectedSpecies, PlantId: res.data.id }).then(res => {
             })
         }).catch(err => {
         })
@@ -127,7 +127,7 @@ function FormPlant() {
                             <Grid item xs={6} >
 
                                 <Typography variant="h4" gutterBottom>
-                                    Update  Plant Data
+                                    Update  Plant
                                 </Typography>
 
                             </Grid>
@@ -137,8 +137,7 @@ function FormPlant() {
                                     <FormLabel component="legend">How is the plat watered?</FormLabel>
                                     <RadioGroup aria-label="watering"
                                                 name="watering"
-                                                value={value}
-                                                onChange={handleChange}>
+                                                onChange={handleInputChange}>
                                         <FormControlLabel value="lightly watered" control={<Radio />} label="Lightly Watered" />
                                         <FormControlLabel value="deeply watered" control={<Radio />} label="Deeply Watered" />
                                     </RadioGroup>
@@ -150,33 +149,19 @@ function FormPlant() {
                                     <FormLabel component="legend">Is the plant fertilized?</FormLabel>
                                     <RadioGroup aria-label="fertilized"
                                                 name="fertilized"
-                                                value={value}
-                                                onChange={handleChange}>
-                                        <FormControlLabel value="lightly watered" control={<Radio />} label="Fertlized" />
-                                        <FormControlLabel value="deeply watered" control={<Radio />} label="Not Fertlized" />
+                                                onChange={handleInputChange}>
+                                        <FormControlLabel value="Fertlized" control={<Radio />} label="Fertlized" />
+                                        <FormControlLabel value="Not Fertlized" control={<Radio />} label="Not Fertlized" />
                                     </RadioGroup>
                                 </FormControl>
                             </Grid>
 
-                            <Grid item xs={6}>
-                                <Autocomplete
-                                    style={{ width: 200 }}
-                                    id={"species"}
-                                    name="SpeciesId"
-                                    options={speciesOptions}
-                                    renderInput={(params) => <TextField {...params} label="Select the species" variant="outlined" />}
-                                    loading={true}
-                                    onChange={(e, value) => setSelectedSpecies(value?.id)}
-                                    getOptionLabel={(option) => option.species}
-                                >
-                                </Autocomplete>
-                            </Grid>
 
                             <Grid item xs={6}>
                                 <TextField
                                     required
                                     id="standard-required"
-                                    label="Nickname Update"
+                                    label="Ni"
                                     placeholder="Update the nickname"
                                     name="name"
                                     onChange={handleInputChange}
@@ -250,7 +235,7 @@ function FormPlant() {
                             <Grid item xs={6}>
                                 <h3>Notes:</h3>
                                 <TextareaAutosize
-                                    aria-label="empty textarea"
+                                    aria-label="update notes"
                                     placeholder="type notes here ..."
                                     name="notes"
                                     style={{  width: 300, height: 100, fontFamily: "sans-serif", fontSize: "12px" }}
@@ -274,4 +259,4 @@ function FormPlant() {
     )
 }
 
-export default FormPlant;
+export default Activity;
