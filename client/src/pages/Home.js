@@ -48,14 +48,15 @@ export default function FullWidthGrid() {
                 </Grid>
                 <Grid item xs={12} sm={4}>
                     <Paper>
-                        <Typography variant="body2" color="textSecondary" component="p">
-                        Welcome to Xeric Files!
-                        - Catalogue your plants and document your plant care
-                        - Explore other user’s collections
-                        - Learn about plant care by location
-                        - Identify your plants by genus and species
-
-                    </Typography>
+                        <Typography variant="body2" color="textPrimary" component="p" className="homeText">
+                            <h1>Welcome to Xeric Files!</h1>
+                            <h2>
+                                <ul>Catalogue your plants and document your plant care</ul>
+                                <ul>Explore other user’s collections</ul>
+                                <ul>Learn about plant care by location</ul>
+                                <ul>Identify your plants by genus and species</ul>
+                            </h2>
+                        </Typography>
                     </Paper>
                 </Grid>
             </Grid>

@@ -6,23 +6,36 @@ body {
     
 }
 .MuiAutocomplete-hasPopupIcon.MuiAutocomplete-hasClearIcon .MuiAutocomplete-inputRoot {
-    background-color: white;
+    background-color: transparent;
+    color:black;
     
 }
 .MuiFormControl-root {
-    background-color: white;
+    background-color: transparent;
+    color:black;
    
 }
 .signupForm{
     position: relative;
 }
-.signupImageContainer, .loginImages{
+.signupImageContainer{
     position: absolute;
-    right:-50%;
+    right:-65%;
     top:0;
     width:100%;
 }
-
+.loginImages{
+    position: absolute;
+    right:-125%;
+    top:0;
+    width:100%;
+}
+.cactusSignup{
+    width:50em;
+}
+.homeText {
+    text-align: center;
+}
 @media (max-width:640px){
     .MuiAutocomplete-root, 
     .MuiTextField-root,
@@ -30,7 +43,7 @@ body {
     {
         width:100px !important;
     }
-    .signupImageContainer{
+    .signupImageContainer, .cactusSignup{
         display:none
     }
 }
