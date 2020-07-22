@@ -13,7 +13,7 @@ function IndividualPlant(props) {
         <>
             <Grid container alignItems="center" justify="center" direction="row" spacing={5}>
                 <Grid container item sm={4} justify="flex-end" >
-                    <Button variant="contained" color="primary">
+                    <Button variant="contained" color="primary" >
                         <ArrowBackIosIcon/>
                     </Button>
                 </Grid>
