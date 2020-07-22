@@ -124,71 +124,75 @@ export default function PlantCard(props) {
 
   return (
     <>
-      <Grid container item sm={12} justify="flex-start" spacing={6} direction="column">
-        <Button component={Link} to="/home"  variant="contained" color="primary">Back</Button>
+      <Grid container item sm={12} direction="row" spacing={2}>
+        <Grid item sm={12} justify="flex-start" direction="row">
+          <Button component={Link} to="/home" variant="contained" color="primary">Back</Button>
+        </Grid>
+        <Grid item sm={12} justify="center" direction="row">
+          <Card className={classes.root} >
+
+            <CardHeader
+              avatar={
+                <Avatar alt="plant" src={plant.Images?.[0].image} className={classes.small} />
+              }
+              action={
+                <IconButton aria-label="settings">
+                  <MoreVertIcon />
+                </IconButton>
+              }
+              title={genus.genus + " " + species.species}
+              subheader={plant.name}
+            />
+            <CardMedia
+              className={classes.media}
+              image={plant.Images?.[0].image}
+              title="plant image"
+            />
+            <CardContent>
+              <Grid container spacing={2} >
+                <Grid item xs={6} md={6} container direction="column" justify="center" alignItems="flex-start" >
+                  <ListItemText
+                    primary={"Genus: " + genus.genus}
+                  />
+                  <ListItemText
+                    primary={"Species: " + species.species}
+                  />
+                  <ListItemText
+                    primary={"Nickname: " + plant.name}
+                  />
+                  <ListItemText
+                    primary={"Country: " + genus.country}
+                  />
+
+                </Grid>
+                <Grid item xs={6} md={6} container direction="column" justify="flex-start" alignItems="flex-start"  >
+
+                  <ListItemText
+                    primary={"Width: " + plant.width + " inches"}
+                  />
+                  <ListItemText
+                    primary={"Price: $" + plant.price}
+                  />
+                  <ListItemText
+                    primary={"Date: " + plant.date}
+                  />
+                  <ListItemText
+                    primary="Single-line item"
+                  />
+
+                </Grid>
+              </Grid>
+
+              <Typography variant="body2" color="textSecondary">
+                {plant.notes}
+              </Typography>
+            </CardContent>
+          </Card>
+        </Grid>
+        <Grid item sm={12} justify="flex-end" direction="row">
+          <Button component={Link} to="/activity" variant="contained" color="primary" >Update</Button>
+        </Grid>
       </Grid>
-
-      <Card className={classes.root} >
-
-        <CardHeader
-          avatar={
-            <Avatar alt="plant" src={plant.Images?.[0].image} className={classes.small} />
-          }
-          action={
-            <IconButton aria-label="settings">
-              <MoreVertIcon />
-            </IconButton>
-          }
-          title={genus.genus + " " + species.species}
-          subheader={plant.name}
-        />
-        <CardMedia
-          className={classes.media}
-          image={plant.Images?.[0].image}
-          title="plant image"
-        />
-        <CardContent>
-          <Grid container spacing={2} >
-            <Grid item xs={6} md={6} container direction="column" justify="center" alignItems="flex-start" >
-              <ListItemText
-                primary={"Genus: " + genus.genus}
-              />
-              <ListItemText
-                primary={"Species: " + species.species}
-              />
-              <ListItemText
-                primary={"Nickname: " + plant.name}
-              />
-              <ListItemText
-                primary={"Country: " + genus.country}
-              />
-
-            </Grid>
-            <Grid item xs={6} md={6} container direction="column" justify="flex-start" alignItems="flex-start"  >
-
-              <ListItemText
-                primary={"Width: " + plant.width + " inches"}
-              />
-              <ListItemText
-                primary={"Price: $" + plant.price}
-              />
-              <ListItemText
-                primary={"Date: " + plant.date}
-              />
-              <ListItemText
-                primary="Single-line item"
-              />
-
-            </Grid>
-          </Grid>
-
-          <Typography variant="body2" color="textSecondary">
-            {plant.notes}
-        </Typography>
-        </CardContent>
-
-      </Card>
-
     </>
   );
 }
