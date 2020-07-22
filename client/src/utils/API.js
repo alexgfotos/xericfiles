@@ -128,5 +128,23 @@ export default {
         update: function(id, data){
             return _update("images", id, data);
         }
+    },
+
+    Activity: {
+        getAll: function () {
+            return _getAll("images");
+        },
+        getById: function (id) {
+            return _getOne("images", id);
+        },
+        delete: function (id) {
+            return _delete("images", id);
+        },
+        create: function(data){
+            return _create("images", data);
+        },
+        update: function(id, data){
+            return _update("images", id, data);
+        }
     }
 }

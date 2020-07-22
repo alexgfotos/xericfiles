@@ -127,22 +127,20 @@ function FormPlant() {
                             <Grid item xs={6} >
 
                                 <Typography variant="h4" gutterBottom>
-                                    Modify a Plant
+                                    Update  Plant Data
                                 </Typography>
 
                             </Grid>
 
                             <Grid item xs={6}>
                                 <FormControl component="fieldset">
-                                    <FormLabel component="legend">Gender</FormLabel>
-                                    <RadioGroup aria-label="gender"
-                                                name="gender1"
+                                    <FormLabel component="legend">How is the plat watered?</FormLabel>
+                                    <RadioGroup aria-label="watering"
+                                                name="watering"
                                                 value={value}
                                                 onChange={handleChange}>
-                                        <FormControlLabel value="female" control={<Radio />} label="Female" />
-                                        <FormControlLabel value="male" control={<Radio />} label="Male" />
-                                        <FormControlLabel value="other" control={<Radio />} label="Other" />
-                                        <FormControlLabel value="disabled" disabled control={<Radio />} label="(Disabled option)" />
+                                        <FormControlLabel value="lightly watered" control={<Radio />} label="Lightly Watered" />
+                                        <FormControlLabel value="deeply watered" control={<Radio />} label="Deeply Watered" />
                                     </RadioGroup>
                                 </FormControl>
                             </Grid>
@@ -165,8 +163,8 @@ function FormPlant() {
                                 <TextField
                                     required
                                     id="standard-required"
-                                    label="Nickname"
-                                    placeholder="Enter the nickname"
+                                    label="Nickname Update"
+                                    placeholder="Update the nickname"
                                     name="name"
                                     onChange={handleInputChange}
                                     style={{ width: 200 }}
@@ -178,7 +176,7 @@ function FormPlant() {
                                     required
                                     defaultValue=""
                                     id="standard-required"
-                                    label="Price paid in USD"
+                                    label="Price update in USD"
                                     name="price"
                                     onChange={handleInputChange}
                                     style={{ width: 200 }}
@@ -190,7 +188,7 @@ function FormPlant() {
                                     required
                                     id="standard-required"
                                     label="Size"
-                                    placeholder="Enter the size in inches"
+                                    placeholder="Enter the plant's new size in inches"
                                     name="width"
                                     style={{ width: 200 }}
                                     type="number"
