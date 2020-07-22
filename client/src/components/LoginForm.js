@@ -52,9 +52,9 @@ function LoginForm(props) {
             </Grid>
             <Container item xs={6} className="loginImages">
                 <Grid item xs={6}>
-                    <Image width="20"  src="assets/cactus4.JPG" />
-                    <Image height="10" src="assets/cactus5.JPG" />
-                    <Image height="10" src="assets/cactus6.JPG" />
+                    <Image width={20}  src="assets/cactus4.JPG" />
+                    <Image width={20}  src="assets/cactus5.JPG" />
+                    <Image width={20}  src="assets/cactus6.JPG" />
                 </Grid>
             </Container>
 

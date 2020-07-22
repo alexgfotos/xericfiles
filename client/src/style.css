@@ -6,11 +6,13 @@ body {
     
 }
 .MuiAutocomplete-hasPopupIcon.MuiAutocomplete-hasClearIcon .MuiAutocomplete-inputRoot {
-    background-color: white;
+    background-color: transparent;
+    color:black;
     
 }
 .MuiFormControl-root {
-    background-color: white;
+    background-color: transparent;
+    color:black;
    
 }
 .signupForm{
@@ -30,6 +32,9 @@ body {
 }
 .cactusSignup{
     width:50em;
+}
+.homeText {
+    text-align: center;
 }
 @media (max-width:640px){
     .MuiAutocomplete-root, 
