@@ -104,15 +104,17 @@ function App() {
                 <Switch>
 
                   <Route exact path={["/", "/home"]}>
-                    <UserHome user={user} />
+                    {user.email ? <UserHome user = {user}/> : <Home />}                   
                   </Route>
+
                   <Route exact path={["/explore"]}>
                     <Explore />
                   </Route>
+
                   <Route exact path={["/individual"]} component={IndividualPlant}/>
                     
                   <Route exact path={["/userhome"]}>
-                    <UserHome />
+                  <UserHome user={user} />
                   </Route>
                   <Route exact path={["/form"]}>
                     <Form />
