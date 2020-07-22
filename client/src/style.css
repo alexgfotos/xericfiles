@@ -38,7 +38,7 @@ body {
     {
         width:100px !important;
     }
-    .signupImageContainer{
+    .signupImageContainer, .cactusSignup{
         display:none
     }
 }
