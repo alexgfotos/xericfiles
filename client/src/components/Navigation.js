@@ -17,9 +17,10 @@ function Navigation(props) {
 
           {user.email ?
             <>
+            <Button component={Link} to="/form" color="inherit">Add Plant</Button>
               <Button color="inherit">{user.email}</Button>
               <Button component={Link} to="/home" onClick={logoutUser} color="inherit">Logout</Button>
-              <Button component={Link} to="/form" color="inherit">Add Plant</Button>
+              
             </>
             :
             <>
