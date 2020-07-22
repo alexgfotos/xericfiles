@@ -37,7 +37,7 @@ export default function PlantCard(props) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
   const [plant, setPlant] = useState({});
-  const [plantIndex, setPlantIndex] = useState(0);
+  // const [plantIndex, setPlantIndex] = useState(0);
   const [genus, setGenusOptions] = useState([]);
   const [species, setSpeciesOptions] = useState([]);
 
@@ -79,35 +79,35 @@ export default function PlantCard(props) {
   }, [species])
 
 
-  function nextPlant(plantIndex) {
+  // function nextPlant(plantIndex) {
 
-    if (plantIndex >= plant.length) {
-      plantIndex = 0;
-    }
-    setPlant(plant[plantIndex]);
-    setPlantIndex(plantIndex);
-  }
+  //   if (plantIndex >= plant.length) {
+  //     plantIndex = 0;
+  //   }
+  //   setPlant(plant[plantIndex]);
+  //   setPlantIndex(plantIndex);
+  // }
 
-  function previousPlant(plantIndex) {
+  // function previousPlant(plantIndex) {
 
-    if (plantIndex < 0) {
-      plantIndex = plant.length - 1;
-    }
-    setPlant(plant[plantIndex]);
-    setPlantIndex(plantIndex);
-  }
+  //   if (plantIndex < 0) {
+  //     plantIndex = plant.length - 1;
+  //   }
+  //   setPlant(plant[plantIndex]);
+  //   setPlantIndex(plantIndex);
+  // }
 
-  function handleBtnClick(event) {
+  // function handleBtnClick(event) {
 
-    const btnName = event.target.getAttribute("data-value");
-    if (btnName === "next") {
-      const newPlantIndex = plantIndex + 1;
-      nextPlant(newPlantIndex);
-    } else {
-      const newPlantIndex = plantIndex - 1;
-      previousPlant(newPlantIndex);
-    }
-  }
+  //   const btnName = event.target.getAttribute("data-value");
+  //   if (btnName === "next") {
+  //     const newPlantIndex = plantIndex + 1;
+  //     nextPlant(newPlantIndex);
+  //   } else {
+  //     const newPlantIndex = plantIndex - 1;
+  //     previousPlant(newPlantIndex);
+  //   }
+  // }
 
   function loadPlants() {
     API.Plant.getById(props.plantId.plant)
@@ -124,7 +124,7 @@ export default function PlantCard(props) {
 
   return (
     <>
-      <Grid container item sm={12} justify="flex-start" >
+      <Grid container item sm={12} justify="flex-start" spacing={6} direction="column">
         <Button component={Link} to="/home"  variant="contained" color="primary">Back</Button>
       </Grid>
 
