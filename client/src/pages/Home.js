@@ -48,7 +48,7 @@ export default function FullWidthGrid() {
                 </Grid>
                 <Grid item xs={12} sm={4}>
                     <Paper>
-                        <Typography variant="body2" color="textPrimary" component="p">
+                        <Typography variant="body2" color="textPrimary" component="p" className="homeText">
                             <h1>Welcome to Xeric Files!</h1>
                             <h2>
                                 <ul>Catalogue your plants and document your plant care</ul>
