@@ -1,7 +1,7 @@
 module.exports={
     "development": {
       "username": "root",
-      "password": process.env.PASSWORD,
+      "password": "root",
       "database": "xeric_files",
       "host": "127.0.0.1",
       "dialect": "mysql"

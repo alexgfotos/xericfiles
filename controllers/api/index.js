@@ -8,6 +8,7 @@ const genusRoutes = require("./genusController");
 const speciesRoutes = require("./speciesController");
 const wishlistRoutes = require("./usersController");
 const imageRoutes = require("./imageController");
+const activityRoutes = require("./activityController")
 
 // Hook up to the router
 router.use("/posts", postRoutes);
@@ -18,6 +19,7 @@ router.use("/graveyard", graveyardRoutes);
 router.use("/species", speciesRoutes);
 router.use("/genus", genusRoutes);
 router.use("/wishlist", wishlistRoutes);
+router.use("/activity", activityRoutes);
 
 // Export the router
 module.exports = router;

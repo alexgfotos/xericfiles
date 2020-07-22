@@ -16,6 +16,7 @@ import IndividualPlant from './pages/IndividualPlant';
 import Form from './pages/Form';
 import UserHome from './pages/UserHome'
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import Activity from "./components/PlantActivity";
 
 
 const theme = createMuiTheme({
@@ -116,6 +117,8 @@ function App() {
                   <Route exact path={["/userhome"]}>
                   <UserHome user={user} />
                   </Route>
+                  <Route exact path={["/activity"]} component={Activity}/>
+
                   <Route exact path={["/form"]}>
                     <Form />
                   </Route>
