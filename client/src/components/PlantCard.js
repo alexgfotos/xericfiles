@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
-import { Grid, ListItemText, Card, CardHeader, CardMedia, CardContent, CardActions, Collapse, Avatar, IconButton, Typography } from '@material-ui/core';
+import { Link } from "react-router-dom";
+import { Button, Grid, ListItemText, Card, CardHeader, CardMedia, CardContent, CardActions, Collapse, Avatar, IconButton, Typography } from '@material-ui/core';
 import { red } from '@material-ui/core/colors';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
@@ -31,38 +32,35 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function PlantCard() {
+export default function PlantCard(props) {
 
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
   const [plant, setPlant] = useState({});
-  const [plants, setPlants] = useState([]);
-  const [plantIndex, setPlantIndex] = useState(0);
-  const [image, setImage] = useState({});
-  const [images, setImages] = useState([]);
+  // const [plantIndex, setPlantIndex] = useState(0);
   const [genus, setGenusOptions] = useState([]);
   const [species, setSpeciesOptions] = useState([]);
 
 
   useEffect(() => {
     loadPlants();
-    loadImage();
+
   }, []);
 
   useEffect(() => {
 
     async function getSpecies() {
 
-      const spec = await axios.get("/api/species/" + plants[0].SpeciesId)
+      const spec = await axios.get("/api/species/" + plant.SpeciesId)
       console.log(spec);
 
       setSpeciesOptions(spec.data);
 
     }
-    if (plants.length) {
+    if (plant.id) {
       getSpecies();
     }
-  }, [plants])
+  }, [plant])
 
   useEffect(() => {
 
@@ -81,59 +79,60 @@ export default function PlantCard() {
   }, [species])
 
 
-  function nextPlant(plantIndex) {
-    // Ensure that the user index stays within our range of users
-    if (plantIndex >= plants.length) {
-      plantIndex = 0;
-    }
-    setPlant(plants[plantIndex]);
-    setPlantIndex(plantIndex);
-  }
+  // function nextPlant(plantIndex) {
 
-  function previousPlant(plantIndex) {
-    // Ensure that the user index stays within our range of users
-    if (plantIndex < 0) {
-      plantIndex = plants.length - 1;
-    }
-    setPlant(plants[plantIndex]);
-    setPlantIndex(plantIndex);
-  }
+  //   if (plantIndex >= plant.length) {
+  //     plantIndex = 0;
+  //   }
+  //   setPlant(plant[plantIndex]);
+  //   setPlantIndex(plantIndex);
+  // }
 
+  // function previousPlant(plantIndex) {
 
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
-  };
+  //   if (plantIndex < 0) {
+  //     plantIndex = plant.length - 1;
+  //   }
+  //   setPlant(plant[plantIndex]);
+  //   setPlantIndex(plantIndex);
+  // }
+
+  // function handleBtnClick(event) {
+
+  //   const btnName = event.target.getAttribute("data-value");
+  //   if (btnName === "next") {
+  //     const newPlantIndex = plantIndex + 1;
+  //     nextPlant(newPlantIndex);
+  //   } else {
+  //     const newPlantIndex = plantIndex - 1;
+  //     previousPlant(newPlantIndex);
+  //   }
+  // }
 
   function loadPlants() {
-    API.Plant.getAll()
-      .then(plants => {
+    API.Plant.getById(props.plantId.plant)
+      .then(plant => {
+        console.log(plant, "this is the plant!")
+        setPlant(plant.data);
 
-        setPlants(plants.data);
-        setPlant(plants.data[0]);
       })
       .catch(err => console.log(err));
   }
 
-  function loadImage() {
-    API.Image.getAll()
-      .then(images => {
-
-        setImages(images);
-        setImage(images.data[0].image);
-      })
-      .catch(err => console.log(err));
-  }
 
 
 
   return (
     <>
+      <Grid container item sm={12} justify="flex-start" spacing={6} direction="column">
+        <Button component={Link} to="/home"  variant="contained" color="primary">Back</Button>
+      </Grid>
 
       <Card className={classes.root} >
 
         <CardHeader
           avatar={
-            <Avatar alt="plant" src={image} className={classes.small} />
+            <Avatar alt="plant" src={plant.Images?.[0].image} className={classes.small} />
           }
           action={
             <IconButton aria-label="settings">
@@ -145,7 +144,7 @@ export default function PlantCard() {
         />
         <CardMedia
           className={classes.media}
-          image={image}
+          image={plant.Images?.[0].image}
           title="plant image"
         />
         <CardContent>
@@ -184,48 +183,9 @@ export default function PlantCard() {
           </Grid>
 
           <Typography variant="body2" color="textSecondary">
-            This cactus consists of many small tubercles growing from a large tap root. They are usually solitary, rarely giving rise to side shoots from old areoles.
+            {plant.notes}
         </Typography>
         </CardContent>
-        <CardActions disableSpacing>
-          <IconButton
-            className={clsx(classes.expand, {
-              [classes.expandOpen]: expanded,
-            })}
-            onClick={handleExpandClick}
-            aria-expanded={expanded}
-            aria-label="show more"
-          >
-            <ExpandMoreIcon />
-          </IconButton>
-        </CardActions>
-        <Collapse in={expanded} timeout="auto" unmountOnExit>
-          <CardContent>
-            <Typography paragraph>Method:</Typography>
-            <Typography paragraph>
-              Heat 1/2 cup of the broth in a pot until simmering, add saffron and set aside for 10
-              minutes.
-          </Typography>
-            <Typography paragraph>
-              Heat oil in a (14- to 16-inch) paella pan or a large, deep skillet over medium-high
-              heat. Add chicken, shrimp and chorizo, and cook, stirring occasionally until lightly
-              browned, 6 to 8 minutes. Transfer shrimp to a large plate and set aside, leaving chicken
-              and chorizo in the pan. Add pimentón, bay leaves, garlic, tomatoes, onion, salt and
-              pepper, and cook, stirring often until thickened and fragrant, about 10 minutes. Add
-              saffron broth and remaining 4 1/2 cups chicken broth; bring to a boil.
-          </Typography>
-            <Typography paragraph>
-              Add rice and stir very gently to distribute. Top with artichokes and peppers, and cook
-              without stirring, until most of the liquid is absorbed, 15 to 18 minutes. Reduce heat to
-              medium-low, add reserved shrimp and mussels, tucking them down into the rice, and cook
-              again without stirring, until mussels have opened and rice is just tender, 5 to 7
-              minutes more. (Discard any mussels that don’t open.)
-          </Typography>
-            <Typography>
-              Set aside off of the heat to let rest for 10 minutes, and then serve.
-          </Typography>
-          </CardContent>
-        </Collapse>
 
       </Card>
 

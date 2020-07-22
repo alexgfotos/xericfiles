@@ -18,11 +18,12 @@ import UserHome from './pages/UserHome'
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import Activity from "./components/PlantActivity";
 
+
 const theme = createMuiTheme({
   palette: {
     primary: {
       light: '#757ce8',
-      main: '#FFFC99',
+      main: '#757ce8',
       dark: '#002884',
       contrastText: '#fff',
     },
@@ -104,16 +105,17 @@ function App() {
                 <Switch>
 
                   <Route exact path={["/", "/home"]}>
-                    <UserHome user={user} />
+                    {user.email ? <UserHome user = {user}/> : <Home />}                   
                   </Route>
+
                   <Route exact path={["/explore"]}>
                     <Explore />
                   </Route>
-                  <Route exact path={["/individual"]}>
-                    <IndividualPlant />
-                  </Route>
+
+                  <Route exact path={["/individual"]} component={IndividualPlant}/>
+                    
                   <Route exact path={["/userhome"]}>
-                    <UserHome />
+                  <UserHome user={user} />
                   </Route>
                   <Route exact path={["/activity"]}>
                     <Activity />
@@ -121,7 +123,12 @@ function App() {
                   <Route exact path={["/form"]}>
                     <Form />
                   </Route>
-                  <Route exact path={["/login", "/signup"]}>
+                  
+                </Switch>
+              </Grid>
+              <Grid item xs={6} className="signupForm">
+                <Switch>
+                <Route exact path={["/login", "/signup"]}>
                     <Auth
                       user={user}
                       loginUser={loginUser}

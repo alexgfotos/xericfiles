@@ -35,7 +35,7 @@ function Auth(props) {
     return (
         <>
             {user.email ?
-                <Redirect to="/home" />
+                <Redirect to="/userHome" />
                 :
                 location.pathname === "/login" ?
                     <>

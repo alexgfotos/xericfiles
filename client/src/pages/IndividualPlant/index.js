@@ -6,25 +6,25 @@ import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 
 
 
-function IndividualPlant() {
+function IndividualPlant(props) {
 
 
     return (
         <>
             <Grid container alignItems="center" justify="center" direction="row" spacing={5}>
-                <Grid container item sm={4} justify="flex-end" >
-                    <Button variant="contained" color="primary">
+                {/* <Grid container item sm={4} justify="flex-end" >
+                    <Button variant="contained" color="primary" >
                         <ArrowBackIosIcon/>
                     </Button>
-                </Grid>
+                </Grid> */}
                 <Grid container item sm={4} justify="center">
-                    <PlantCard />
+                    <PlantCard plantId ={props.location.state} />
                 </Grid>
-                <Grid container item sm={4} justify="flex-start" >
+                {/* <Grid container item sm={4} justify="flex-start" >
                     <Button variant="contained" color="primary">
                         <ArrowForwardIosIcon/>
                     </Button>
-                </Grid>
+                </Grid> */}
             </Grid>
         </>
     )
