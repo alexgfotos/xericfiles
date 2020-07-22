@@ -55,7 +55,7 @@ function SignupForm(props) {
             <Paper>
                 <Container maxWidth={false}>
                     <form>
-                        <Grid container spacing={3} item xs={6} >
+                        <Grid container spacing={3} item xs={12} >
                             <Grid item xs={12}>
                                 <Typography variant="h4" gutterBottom>
                                     Signup
@@ -205,10 +205,10 @@ function SignupForm(props) {
                     </form>
                 </Container>
             </Paper>
-            <Grid className="signupImageContainer" item xs={3} spacing={1}>
-                <Image width="10" src="assets/cactus1.JPG" />
-                <Image width="10" src="assets/cactus2.JPG" />
-                <Image width="10" src="assets/cactus3.JPG" />
+            <Grid className="signupImageContainer" item xs={4}>
+                <Image width="15" src="assets/cactus1.JPG" />
+                <Image width="15" src="assets/cactus2.JPG" />
+                <Image width="15" src="assets/cactus3.JPG" />
             </Grid>
 
 

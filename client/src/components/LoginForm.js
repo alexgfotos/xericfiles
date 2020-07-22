@@ -7,12 +7,12 @@ function LoginForm(props) {
 
     return (
         <>
-            <Grid item xs={6}>
+            <Grid item xs={12}>
                 <Paper>
-                    <Container item xs={6}>
+                    <Container item xs={12}>
                         <form>
                             <Grid container spacing={3}>
-                                <Grid item xs={3}>
+                                <Grid item xs={12}>
                                     <Typography variant="h4" gutterBottom>
                                         Login
                                 </Typography>
@@ -41,7 +41,7 @@ function LoginForm(props) {
                                 </Grid>
 
                                 <Grid item xs={12}>
-                                    <Button variant="contained" color="primary-light" type="submit" onClick={handleFormSubmit}>
+                                    <Button variant="contained" color="primary" type="submit" onClick={handleFormSubmit}>
                                         Login
                                 </Button>
                                 </Grid>
@@ -52,7 +52,7 @@ function LoginForm(props) {
             </Grid>
             <Container item xs={6} className="loginImages">
                 <Grid item xs={6}>
-                    <Image height="10"  src="assets/cactus4.JPG" />
+                    <Image width="20"  src="assets/cactus4.JPG" />
                     <Image height="10" src="assets/cactus5.JPG" />
                     <Image height="10" src="assets/cactus6.JPG" />
                 </Grid>
