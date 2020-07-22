@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
-import { Grid, ListItemText, Card, CardHeader, CardMedia, CardContent, CardActions, Collapse, Avatar, IconButton, Typography } from '@material-ui/core';
+import { Link } from "react-router-dom";
+import { Button, Grid, ListItemText, Card, CardHeader, CardMedia, CardContent, CardActions, Collapse, Avatar, IconButton, Typography } from '@material-ui/core';
 import { red } from '@material-ui/core/colors';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
@@ -36,15 +37,14 @@ export default function PlantCard(props) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
   const [plant, setPlant] = useState({});
-  const [plants, setPlants] = useState([]);
-  const [plantIndex, setPlantIndex] = useState(0);
+  // const [plantIndex, setPlantIndex] = useState(0);
   const [genus, setGenusOptions] = useState([]);
   const [species, setSpeciesOptions] = useState([]);
 
 
   useEffect(() => {
     loadPlants();
-   
+
   }, []);
 
   useEffect(() => {
@@ -80,34 +80,41 @@ export default function PlantCard(props) {
 
 
   // function nextPlant(plantIndex) {
-  //   // Ensure that the user index stays within our range of users
-  //   if (plantIndex >= plants.length) {
+
+  //   if (plantIndex >= plant.length) {
   //     plantIndex = 0;
   //   }
-  //   setPlant(plants[plantIndex]);
+  //   setPlant(plant[plantIndex]);
   //   setPlantIndex(plantIndex);
   // }
 
   // function previousPlant(plantIndex) {
-  //   // Ensure that the user index stays within our range of users
+
   //   if (plantIndex < 0) {
-  //     plantIndex = plants.length - 1;
+  //     plantIndex = plant.length - 1;
   //   }
-  //   setPlant(plants[plantIndex]);
+  //   setPlant(plant[plantIndex]);
   //   setPlantIndex(plantIndex);
   // }
 
+  // function handleBtnClick(event) {
 
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
-  };
+  //   const btnName = event.target.getAttribute("data-value");
+  //   if (btnName === "next") {
+  //     const newPlantIndex = plantIndex + 1;
+  //     nextPlant(newPlantIndex);
+  //   } else {
+  //     const newPlantIndex = plantIndex - 1;
+  //     previousPlant(newPlantIndex);
+  //   }
+  // }
 
   function loadPlants() {
     API.Plant.getById(props.plantId.plant)
       .then(plant => {
-       console.log(plant, "this is the plant!")
-          setPlant(plant.data);
-      
+        console.log(plant, "this is the plant!")
+        setPlant(plant.data);
+
       })
       .catch(err => console.log(err));
   }
@@ -117,6 +124,9 @@ export default function PlantCard(props) {
 
   return (
     <>
+      <Grid container item sm={12} justify="flex-start" spacing={6} direction="column">
+        <Button component={Link} to="/home"  variant="contained" color="primary">Back</Button>
+      </Grid>
 
       <Card className={classes.root} >
 
@@ -176,7 +186,7 @@ export default function PlantCard(props) {
             {plant.notes}
         </Typography>
         </CardContent>
-        
+
       </Card>
 
     </>
