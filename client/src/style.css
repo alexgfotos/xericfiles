@@ -16,7 +16,7 @@ body {
 .signupForm{
     position: relative;
 }
-.signupImageContainer{
+.signupImageContainer, .loginImages{
     position: absolute;
     right:-50%;
     top:0;

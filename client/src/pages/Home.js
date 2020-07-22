@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
         color: theme.palette.text.secondary,
     },
     media: {
-        height:500,
+        height: 500,
     }
 }));
 
@@ -31,24 +31,30 @@ export default function FullWidthGrid() {
         <div className={classes.root}>
             <Grid container spacing={1}>
                 <Grid item xs={12} sm={8}>
-                    
+
                     <Card className={classes.root}>
                         <CardActionArea>
-                            
+
                             <CardMedia
                                 className={classes.media}
-                                image="/static/assets/cactus-home.png"
+                                image="assets/cactus10.JPG"
                                 title="Fluffy Cactus"
                             />
-                          
+
                         </CardActionArea>
 
                     </Card>
 
                 </Grid>
                 <Grid item xs={12} sm={4}>
-                    <Paper> 
-                        <Typography variant="body2" color="textSecondary" component="p">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    <Paper>
+                        <Typography variant="body2" color="textSecondary" component="p">
+                        Welcome to Xeric Files!
+                        - Catalogue your plants and document your plant care
+                        - Explore other user’s collections
+                        - Learn about plant care by location
+                        - Identify your plants by genus and species
+
                     </Typography>
                     </Paper>
                 </Grid>
