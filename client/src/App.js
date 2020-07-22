@@ -22,7 +22,7 @@ const theme = createMuiTheme({
   palette: {
     primary: {
       light: '#757ce8',
-      main: '#FFFC99',
+      main: '#757ce8',
       dark: '#002884',
       contrastText: '#fff',
     },
@@ -117,7 +117,12 @@ function App() {
                   <Route exact path={["/form"]}>
                     <Form />
                   </Route>
-                  <Route exact path={["/login", "/signup"]}>
+                  
+                </Switch>
+              </Grid>
+              <Grid item xs={6} className="signupForm">
+                <Switch>
+                <Route exact path={["/login", "/signup"]}>
                     <Auth
                       user={user}
                       loginUser={loginUser}

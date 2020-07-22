@@ -11,14 +11,17 @@ function Navigation(props) {
       <AppBar position="static" color="secondary">
         <Toolbar >
           <Button component={Link} to="/home" color="inherit">Home</Button>
-          <Button component={Link} to="/explore" color="inherit">Explore</Button>
           <Button component={Link} to="/form" color="inherit">Add Plant</Button>
+          <Button component={Link} to="/explore" color="inherit">Explore</Button>
+         
           
 
           {user.email ?
             <>
+            <Button component={Link} to="/form" color="inherit">Add Plant</Button>
               <Button color="inherit">{user.email}</Button>
               <Button component={Link} to="/home" onClick={logoutUser} color="inherit">Logout</Button>
+              
             </>
             :
             <>
