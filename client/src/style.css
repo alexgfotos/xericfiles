@@ -16,13 +16,21 @@ body {
 .signupForm{
     position: relative;
 }
-.signupImageContainer, .loginImages{
+.signupImageContainer{
     position: absolute;
-    right:-50%;
+    right:-65%;
     top:0;
     width:100%;
 }
-
+.loginImages{
+    position: absolute;
+    right:-125%;
+    top:0;
+    width:100%;
+}
+.cactusSignup{
+    width:50em;
+}
 @media (max-width:640px){
     .MuiAutocomplete-root, 
     .MuiTextField-root,
@@ -30,7 +38,7 @@ body {
     {
         width:100px !important;
     }
-    .signupImageContainer{
+    .signupImageContainer, .cactusSignup{
         display:none
     }
 }
