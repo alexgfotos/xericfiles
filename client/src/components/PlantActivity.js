@@ -64,7 +64,7 @@ function FormPlant() {
     //when submit is hit, create plant in db by sending it an object created from the states in the form.
     const handlePlantSubmit = (event) => {
         event.preventDefault();
-        if (image) {API.Plant.create({ ...formObject, GenusId: selectedGenus, SpeciesId: selectedSpecies, date: selectedDate }).then(res => {
+        if (image) {API.Plant.update({ ...formObject, GenusId: selectedGenus, SpeciesId: selectedSpecies, date: selectedDate }).then(res => {
             console.log(res)
             API.Image.create({ image: image, GenusId: selectedGenus, SpeciesId: selectedSpecies, PlantId: res.data.id }).then(res => {
             })
@@ -146,6 +146,19 @@ function FormPlant() {
                             </Grid>
 
                             <Grid item xs={6}>
+                                <FormControl component="fieldset">
+                                    <FormLabel component="legend">Is the plant fertilized?</FormLabel>
+                                    <RadioGroup aria-label="fertilized"
+                                                name="fertilized"
+                                                value={value}
+                                                onChange={handleChange}>
+                                        <FormControlLabel value="lightly watered" control={<Radio />} label="Fertlized" />
+                                        <FormControlLabel value="deeply watered" control={<Radio />} label="Not Fertlized" />
+                                    </RadioGroup>
+                                </FormControl>
+                            </Grid>
+
+                            <Grid item xs={6}>
                                 <Autocomplete
                                     style={{ width: 200 }}
                                     id={"species"}
@@ -176,7 +189,7 @@ function FormPlant() {
                                     required
                                     defaultValue=""
                                     id="standard-required"
-                                    label="Price update in USD"
+                                    label="Update Price"
                                     name="price"
                                     onChange={handleInputChange}
                                     style={{ width: 200 }}

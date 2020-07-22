@@ -114,6 +114,9 @@ function App() {
                   <Route exact path={["/userhome"]}>
                     <UserHome />
                   </Route>
+                  <Route exact path={["/activity"]}>
+                    <UserHome />
+                  </Route>
                   <Route exact path={["/form"]}>
                     <Form />
                   </Route>
