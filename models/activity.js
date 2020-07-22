@@ -2,7 +2,7 @@ module.exports = function (sequelize, DataTypes) {
     var Activity = sequelize.define("Activity", {
         date: {
             type: DataTypes.DATEONLY,
-            allowNull: false,
+            allowNull: true,
         },
         notes: {
             type: DataTypes.STRING,

@@ -42,7 +42,7 @@ function _create(entity, data){
  * @param {Object} data data to update an entity by
  */
 function _update(id, entity, data){
-    return axios.post(`/api/${entity}/${id}`, data);
+    return axios.put(`/api/${entity}/${id}`, data);
 }
 
 
@@ -109,7 +109,7 @@ export default {
             return _create("plants", data);
         },
         update: function(id, data){
-            return _update("plants", id, data);
+            return _update(id,"plants", data);
         }
     },
     Image: {
@@ -132,19 +132,19 @@ export default {
 
     Activity: {
         getAll: function () {
-            return _getAll("images");
+            return _getAll("activity");
         },
         getById: function (id) {
-            return _getOne("images", id);
+            return _getOne("activity", id);
         },
         delete: function (id) {
-            return _delete("images", id);
+            return _delete("activity", id);
         },
         create: function(data){
-            return _create("images", data);
+            return _create("activity", data);
         },
         update: function(id, data){
-            return _update("images", id, data);
+            return _update("activity", id, data);
         }
     }
 }

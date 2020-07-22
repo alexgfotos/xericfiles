@@ -12,7 +12,7 @@ import FormLabel from "@material-ui/core/FormLabel";
 import Radio from "@material-ui/core/Radio";
 
 
-function Activity() {
+function Activity(props) {
     //states used to define our plant
     const [genusOptions, setGenusOptions] = useState([]);
     const [selectedGenus, setSelectedGenus] = useState();
@@ -34,6 +34,7 @@ function Activity() {
         setFormObject(initialFormState)
         setImage("")
     }
+
 
     useEffect(() => {
         // on site load, get all genera using the api call/route
@@ -63,22 +64,33 @@ function Activity() {
 
     //when submit is hit, create plant in db by sending it an object created from the states in the form.
     const handlePlantSubmit = (event) => {
+        console.log("plant submitted")
         event.preventDefault();
-        if (image) {API.Plant.update({ ...formObject, GenusId: selectedGenus, SpeciesId: selectedSpecies, date: selectedDate }).then(res => {
+        API.Plant.update(props.location.state.plant, {
+            ...formObject,
+            GenusId: selectedGenus,
+            SpeciesId: selectedSpecies,
+            date: selectedDate
+        }).then(res => {
             console.log(res)
-            API.Image.update({ image: image, GenusId: selectedGenus, SpeciesId: selectedSpecies, PlantId: res.data.id }).then(res => {
-            })
         }).catch(err => {
         })
-            setTimeout(function (){
-                window.location.reload(false)
-            }, 3000)
-            console.log(image)}
-        else alert("image required!")
+
+        API.Activity.create({
+           water:formObject.watering,
+           fertilizer:formObject.fertilized,
+           PlantId: props.location.state.plant
+        }).then(res => {
+            console.log(res)
+        }).catch(err => {
+        })
+        // setTimeout(function (){
+        //     window.location.reload(false)
+        // }, 3000)
+        // console.log(image)}
 
         // window.location.reload(false)
     }
-
     const uploadImage = async e => {
         const files = e.target.files
         const data = new FormData()

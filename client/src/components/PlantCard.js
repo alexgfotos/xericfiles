@@ -190,7 +190,7 @@ export default function PlantCard(props) {
           </Card>
         </Grid>
         <Grid item sm={12} justify="flex-end" direction="row">
-          <Button component={Link} to="/activity" variant="contained" color="primary" >Update</Button>
+          <Button component={Link} to={{pathname:"/activity", state:{plant:plant.id}}} variant="contained" color="primary" >Update</Button>
         </Grid>
       </Grid>
     </>
