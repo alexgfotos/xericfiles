@@ -22,7 +22,6 @@ function Activity(props) {
     const initialFormState = { name: "", width: "", price: "" };
     const [formObject, setFormObject] = useState(initialFormState)
     const [image, setImage] = useState("");
-    const [loading, setLoading] = useState(false);
     const [plantId, setPlantId] = useState("")
 
     function clearState(){
@@ -80,6 +79,7 @@ function Activity(props) {
            water:formObject.watering,
            fertilizer:formObject.fertilized,
             status:formObject.plantStatus,
+            nickname:formObject.nickname,
            PlantId: props.location.state.plant
         }).then(res => {
             console.log(res)
@@ -105,19 +105,19 @@ function Activity(props) {
                             <Grid item xs={6} >
 
                                 <Typography variant="h4" gutterBottom>
-                                    Update  Plant
+                                    Update Plant
                                 </Typography>
 
                             </Grid>
 
-                            <Grid item xs={2}>
+                            <Grid item xs={4}>
                                 <FormControl component="fieldset">
                                     <FormLabel component="legend">What's the status of the plant?</FormLabel>
                                     <RadioGroup aria-label="plantStatus"
                                                 name="plantStatus"
                                                 onChange={handleInputChange}>
                                         <FormControlLabel value="alive" control={<Radio />} label="Alive" />
-                                        <FormControlLabel value="dead" control={<Radio />} label="Dead" />
+                                        <FormControlLabel value="dead" control={<Radio />} label="Dead(send to graveyard...)" />
                                     </RadioGroup>
                                 </FormControl>
                             </Grid>
@@ -140,8 +140,8 @@ function Activity(props) {
                                     <RadioGroup aria-label="fertilized"
                                                 name="fertilized"
                                                 onChange={handleInputChange}>
-                                        <FormControlLabel value="Fertlized" control={<Radio />} label="Fertlized" />
-                                        <FormControlLabel value="Not Fertlized" control={<Radio />} label="Not Fertlized" />
+                                        <FormControlLabel value="Fertilized" control={<Radio />} label="Fertilized" />
+                                        <FormControlLabel value="Not Fertilized" control={<Radio />} label="Not Fertilized" />
                                     </RadioGroup>
                                 </FormControl>
                             </Grid>
@@ -153,7 +153,7 @@ function Activity(props) {
                                     id="standard-required"
                                     label="New Nickname"
                                     placeholder="New Nickname"
-                                    name="name"
+                                    name="nickname"
                                     onChange={handleInputChange}
                                     style={{ width: 200 }}
                                 />
