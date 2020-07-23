@@ -25,13 +25,6 @@ module.exports = function (sequelize, DataTypes) {
                 len: [1]
             }
         },
-        status: {
-            type: DataTypes.STRING,
-            allowNull: true,
-            validate: {
-                len: [1]
-            }
-        },
         water: {
             type: DataTypes.STRING,
             allowNull: true,
@@ -40,6 +33,14 @@ module.exports = function (sequelize, DataTypes) {
             }
         },
         fertilizer: {
+            type: DataTypes.STRING,
+            allowNull: true,
+            validate: {
+                len: [1]
+            }
+
+        },
+        plantStatus: {
             type: DataTypes.STRING,
             allowNull: true,
             validate: {
