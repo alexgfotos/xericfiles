@@ -11,6 +11,8 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormGroup from '@material-ui/core/FormGroup';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
+import Button from '@material-ui/core/Button';
+import Link from '@material-ui/core/Link';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -21,6 +23,7 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     flexGrow: 1,
+    color: "white"
   },
 }));
 
@@ -46,19 +49,37 @@ export default function UserHomeNav() {
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
-          <Typography variant="h6" className={classes.title}>
-            Collection
-          </Typography>
-          <Typography variant="h6" className={classes.title}>
-            Data
-          </Typography>
+
+        <Link href="/home">
+          <Button component={Link} to="/userHome" color="primary">
+            <Typography variant="h6" className={classes.title}>
+              Collection</Typography>
+          </Button>
+          </Link>
+
+          <Link href="/data">
+          <Button component={Link} to="/data" color="primary">
+            <Typography variant="h6" className={classes.title}>
+              Data
+          </Typography></Button>
+          </Link>
+
+          <Link href="/wishlist">
+          <Button component={Link} to="/wishlist" color="primary">
           <Typography variant="h6" className={classes.title}>
             Wishlist
           </Typography>
+          </Button>
+          </Link>
+
+          <Link href="/graveyard"><Button component={Link} to="/graveyard" color="primary">
           <Typography variant="h6" className={classes.title}>
             Graveyard
           </Typography>
-          {auth && (
+          </Button>
+          </Link>
+          
+          {/* {auth && (
             <div>
               <IconButton
                 aria-label="account of current user"
@@ -88,7 +109,7 @@ export default function UserHomeNav() {
                 <MenuItem onClick={handleClose}>My account</MenuItem>
               </Menu>
             </div>
-          )}
+          )} */}
         </Toolbar>
       </AppBar>
     </div>
