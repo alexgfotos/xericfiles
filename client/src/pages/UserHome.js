@@ -7,6 +7,7 @@ import GridList from '@material-ui/core/GridList';
 import { Link } from "react-router-dom"
 import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
+import PlantModal from "../components/PlantModal";
 
 
 
