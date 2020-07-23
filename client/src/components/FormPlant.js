@@ -47,7 +47,7 @@ function FormPlant() {
     async function getSpecies() {
       // once genera are loaded, get species by genera ID using api call
       const spec = await axios.get(`/api/species?GenusId=${selectedGenus}`)
-      console.log(spec);
+      console.log("spec" + spec);
 
       setSpeciesOptions(spec.data); 
 

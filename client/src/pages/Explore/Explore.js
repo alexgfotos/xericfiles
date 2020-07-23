@@ -1,14 +1,17 @@
 import React, { useState, useEffect } from "react";
-import { Grid, Typography } from '@material-ui/core';
+import { Box,Grid, Typography, Button } from '@material-ui/core';
 import "../Explore/explore.css"
 import Masonry from 'react-masonry-css'
 import axios from "axios";
+import { Link } from "react-router-dom"
 
 
 
 function Explore() {
+
     const [imagesReq, setImagesReq] = useState([]);
 
+    
 
     // state = {
     //     imageUrl: "",
@@ -35,7 +38,7 @@ function Explore() {
             setImagesReq(images.data)
         }
         )
-        
+        console.log(imagesReq)
     }, [])
 
 
@@ -44,12 +47,25 @@ function Explore() {
     const images = imagesReq.map((url, idx) => {
 
         return (
-            <img
-                className="singleImage"
-                src={url.image}
-                key={idx}
-                onClick={() => this}
-            />
+            <Box>
+            <Link to={{
+
+                pathname: "/individual",
+                state: {
+                  plant: url.PlantId
+                }
+              }}>
+                <img
+              className="singleImage"
+              src={url.image}
+              key={idx}
+              onClick={() => this}
+          />
+              </Link>
+              </Box>
+            
+            
+            
         )
     })
 
