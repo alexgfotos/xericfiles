@@ -21,10 +21,6 @@ function FormPlant() {
   const [plantId, setPlantId] = useState("")
 
  function clearState(){
-  setGenusOptions([])
-  setSelectedGenus([])
-  setSelectedSpecies([])
-  setSpeciesOptions([])
   setSelectedDate([])
   setFormObject(initialFormState)
   setImage("")
@@ -63,11 +59,12 @@ function FormPlant() {
       console.log(res)
       API.Image.create({ image: image, GenusId: selectedGenus, SpeciesId: selectedSpecies, PlantId: res.data.id }).then(res => {
       })
+      alert("added to your collection!")
     }).catch(err => {
     })
     setTimeout(function (){
-      window.location.reload(false)
-    }, 3000)
+      window.location.href = "/home"
+    }, 2000)
     console.log(image)}
     else alert("image required!")
 
