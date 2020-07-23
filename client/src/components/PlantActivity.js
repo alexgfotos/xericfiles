@@ -146,7 +146,7 @@ function Activity(props) {
 
                             <Grid item xs={6}>
                                 <FormControl component="fieldset">
-                                    <FormLabel component="legend">How is the plat watered?</FormLabel>
+                                    <FormLabel component="legend">How is the plant watered?</FormLabel>
                                     <RadioGroup aria-label="watering"
                                                 name="watering"
                                                 onChange={handleInputChange}>
