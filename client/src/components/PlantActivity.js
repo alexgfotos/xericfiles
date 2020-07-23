@@ -22,7 +22,6 @@ function Activity(props) {
     const initialFormState = { name: "", width: "", price: "" };
     const [formObject, setFormObject] = useState(initialFormState)
     const [image, setImage] = useState("");
-    const [loading, setLoading] = useState(false);
     const [plantId, setPlantId] = useState("")
 
     function clearState(){
@@ -79,42 +78,13 @@ function Activity(props) {
         API.Activity.create({
            water:formObject.watering,
            fertilizer:formObject.fertilized,
+            status:formObject.plantStatus,
+            nickname:formObject.nickname,
            PlantId: props.location.state.plant
         }).then(res => {
             console.log(res)
         }).catch(err => {
         })
-        // setTimeout(function (){
-        //     window.location.reload(false)
-        // }, 3000)
-        // console.log(image)}
-
-        // window.location.reload(false)
-    }
-    const uploadImage = async e => {
-        const files = e.target.files
-        const data = new FormData()
-
-        data.append("file", files[0])
-        data.append("upload_preset", "xericfiles")
-
-        setLoading(true)
-
-        const res = await fetch(
-            'https://api.cloudinary.com/v1_1/university-of-arizona-bootcamp/image/upload',
-
-            {
-                method: "POST",
-                body: data
-            }
-        )
-
-        const file = await res.json()
-
-
-        setImage(file.secure_url)
-        setLoading(false)
-
     }
 
 
@@ -124,10 +94,6 @@ function Activity(props) {
         const { name, value } = event.target;
         setFormObject({ ...formObject, [name]: value });
     }
-    const handleDateChange = (date) => {
-        setSelectedDate(date);
-
-    };
 
     return (
         <>
@@ -139,14 +105,26 @@ function Activity(props) {
                             <Grid item xs={6} >
 
                                 <Typography variant="h4" gutterBottom>
-                                    Update  Plant
+                                    Update Plant
                                 </Typography>
 
                             </Grid>
 
+                            <Grid item xs={4}>
+                                <FormControl component="fieldset">
+                                    <FormLabel component="legend">What's the status of the plant?</FormLabel>
+                                    <RadioGroup aria-label="plantStatus"
+                                                name="plantStatus"
+                                                onChange={handleInputChange}>
+                                        <FormControlLabel value="alive" control={<Radio />} label="Alive" />
+                                        <FormControlLabel value="dead" control={<Radio />} label="Dead(send to graveyard...)" />
+                                    </RadioGroup>
+                                </FormControl>
+                            </Grid>
+
                             <Grid item xs={6}>
                                 <FormControl component="fieldset">
-                                    <FormLabel component="legend">How is the plat watered?</FormLabel>
+                                    <FormLabel component="legend">Is the plant watered?</FormLabel>
                                     <RadioGroup aria-label="watering"
                                                 name="watering"
                                                 onChange={handleInputChange}>
@@ -162,8 +140,8 @@ function Activity(props) {
                                     <RadioGroup aria-label="fertilized"
                                                 name="fertilized"
                                                 onChange={handleInputChange}>
-                                        <FormControlLabel value="Fertlized" control={<Radio />} label="Fertlized" />
-                                        <FormControlLabel value="Not Fertlized" control={<Radio />} label="Not Fertlized" />
+                                        <FormControlLabel value="Fertilized" control={<Radio />} label="Fertilized" />
+                                        <FormControlLabel value="Not Fertilized" control={<Radio />} label="Not Fertilized" />
                                     </RadioGroup>
                                 </FormControl>
                             </Grid>
@@ -173,9 +151,9 @@ function Activity(props) {
                                 <TextField
                                     required
                                     id="standard-required"
-                                    label="Ni"
-                                    placeholder="Update the nickname"
-                                    name="name"
+                                    label="New Nickname"
+                                    placeholder="New Nickname"
+                                    name="nickname"
                                     onChange={handleInputChange}
                                     style={{ width: 200 }}
                                 />
@@ -187,6 +165,7 @@ function Activity(props) {
                                     defaultValue=""
                                     id="standard-required"
                                     label="Update Price"
+                                    placeholder="Update Price"
                                     name="price"
                                     onChange={handleInputChange}
                                     style={{ width: 200 }}
@@ -197,9 +176,9 @@ function Activity(props) {
                                 <TextField
                                     required
                                     id="standard-required"
-                                    label="Size"
-                                    placeholder="Enter the plant's new size in inches"
-                                    name="width"
+                                    label=""
+                                    placeholder="Enter the plant's new size "
+                                    name="size"
                                     style={{ width: 200 }}
                                     type="number"
                                     onChange={handleInputChange}
@@ -207,42 +186,6 @@ function Activity(props) {
                                 />
                             </Grid>
 
-                            <MuiPickersUtilsProvider utils={MomentUtils}>
-                                <Grid item xs={6}>
-                                    <KeyboardDatePicker
-                                        disableToolbar
-                                        variant="inline"
-                                        format="MM/DD/yyyy"
-                                        margin="normal"
-                                        id="date-picker-inline"
-                                        name="date"
-                                        label="Date of acquired"
-                                        value={selectedDate}
-                                        onChange={handleDateChange}
-                                        KeyboardButtonProps={{
-                                            'aria-label': 'change date',
-                                        }}
-                                        style={{ width: 200 }}
-                                    />
-                                </Grid>
-                            </MuiPickersUtilsProvider>
-
-                            <Grid item xs={6}>
-                                <input
-                                    type="file"
-                                    name="file"
-                                    placeholder="Upload an image"
-                                    onChange={uploadImage}
-                                    style={{ width: 200 }}
-                                />
-                                {loading ? (
-                                    <h3>Loading..</h3>
-                                ) : (
-                                    <Grid item xs={6} >
-                                        <img src={image} style={{ width: "200px" }} />
-                                    </Grid>
-                                )}
-                            </Grid>
 
                             <Grid item xs={6}>
                                 <h3>Notes:</h3>
@@ -260,7 +203,7 @@ function Activity(props) {
                                     Submit
                                 </Button>
                             </Grid>
-                            ``
+
                         </Grid>
                     </Paper>
 
