@@ -4,8 +4,6 @@ import clsx from 'clsx';
 import { Link } from "react-router-dom";
 import { Button, Grid, ListItemText, Card, CardHeader, CardMedia, CardContent, CardActions, Collapse, Avatar, IconButton, Typography } from '@material-ui/core';
 import { red } from '@material-ui/core/colors';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
 import API from "../utils/API"
 import axios from "axios"
 
@@ -135,11 +133,7 @@ export default function PlantCard(props) {
               avatar={
                 <Avatar alt="plant" src={plant.Images?.[0].image} className={classes.small} />
               }
-              action={
-                <IconButton aria-label="settings">
-                  <MoreVertIcon />
-                </IconButton>
-              }
+           
               title={genus.genus + " " + species.species}
               subheader={plant.name}
             />
@@ -160,9 +154,7 @@ export default function PlantCard(props) {
                   <ListItemText
                     primary={"Nickname: " + plant.name}
                   />
-                  <ListItemText
-                    primary={"Country: " + genus.country}
-                  />
+                 
 
                 </Grid>
                 <Grid item xs={6} md={6} container direction="column" justify="flex-start" alignItems="flex-start"  >
@@ -176,9 +168,7 @@ export default function PlantCard(props) {
                   <ListItemText
                     primary={"Date: " + plant.date}
                   />
-                  <ListItemText
-                    primary="Single-line item"
-                  />
+                 
 
                 </Grid>
               </Grid>
