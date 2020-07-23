@@ -47,7 +47,7 @@ function Explore() {
     const images = imagesReq.map((url, idx) => {
 
         return (
-            <Box>
+            <React.Fragment>
             <Link to={{
 
                 pathname: "/individual",
@@ -62,7 +62,7 @@ function Explore() {
               onClick={() => this}
           />
               </Link>
-              </Box>
+              </React.Fragment>
             
             
             

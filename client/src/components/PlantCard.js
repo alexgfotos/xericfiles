@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
   },
   media: {
     height: 0,
-    paddingTop: '56.25%', // 16:9
+    paddingTop: '100%', // 16:9
   },
   expand: {
     transform: 'rotate(0deg)',
@@ -122,7 +122,7 @@ export default function PlantCard(props) {
 
   return (
     <>
-      <Grid container item sm={12} direction="row" spacing={2}>
+      <Grid sm={12} direction="row" spacing={2}>
         <Grid item sm={12} justify="flex-start" direction="row">
           <Button component={Link} to="/home" variant="contained" color="primary">Back</Button>
         </Grid>

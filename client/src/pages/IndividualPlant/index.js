@@ -17,7 +17,7 @@ function IndividualPlant(props) {
                         <ArrowBackIosIcon/>
                     </Button>
                 </Grid> */}
-                <Grid container item sm={4} justify="center">
+                <Grid justify="center" alignItems="center" sm={4} >
                     <PlantCard plantId ={props.location.state} />
                 </Grid>
                 {/* <Grid container item sm={4} justify="flex-start" >
