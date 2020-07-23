@@ -1,53 +1,56 @@
 import React, { useEffect, useState } from "react";
-import { Container, Grid, Button, TextField, Paper, Typography, TextareaAutosize } from '@material-ui/core';
-import Autocomplete from '@material-ui/lab/Autocomplete';
+import { Container, Paper, Typography, TextareaAutosize } from '@material-ui/core';
+
 import axios from "axios";
-import MomentUtils from "@date-io/moment"
-import { MuiPickersUtilsProvider, KeyboardDatePicker, } from '@material-ui/pickers';
-import API from '..//utils/API';
 import UserHomeNav from "../components/UserHomeNav";
 import GridList from '@material-ui/core/GridList';
 import { Link } from "react-router-dom"
 import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
-import ListSubheader from '@material-ui/core/ListSubheader';
-import IconButton from '@material-ui/core/IconButton';
-import GitHubIcon from '@material-ui/icons/GitHub';
+
 
 
 
 function UserHome(props) {
   const [plants, setPlants] = useState([]);
   const [images, setImages] = useState([]);
+  const [species, setSpecies] = useState({});
+  const [specId, setSpecId] = useState([])
 
   async function getPlants() {
     const plantReq = await axios.get(`/api/plants?UserId=${props.user.id}`)
-    console.log(plantReq);
+    // console.log(plantReq);
 
     setPlants(plantReq.data);
   }
 
-  // async function getGenus() {
-  //   const genusReq = await axios.get(`/api/genera`)
-  //   console.log(plantReq);
 
-  //   setPlants(plantReq.data);
-  // }
+  async function getSpecies() {
+    const res = await axios.get('/api/species');
+    let species = { 'none': 'none' }
+    res.data.forEach(specie => {
+      species[specie.id] = specie;
+    })
+    setSpecies(species)
+    // console.log(species)
+ }
 
   async function getImages() {
     const imageReq = await axios.get(`/api/images`)
-    console.log(imageReq.data);
+
 
     setImages(imageReq.data)
-    console.log(images);
   }
 
   useEffect(() => {
     // on site load, get all genera using the api call/route
+    getSpecies()
     getPlants()
     getImages()
-    console.log(plants)
+
   }, [])
+
+
 
   let cards = []
   plants.forEach(plant => {
@@ -60,7 +63,6 @@ function UserHome(props) {
     }
     cards.push(currentPlant);
   })
-
 
   console.log(cards)
 
@@ -77,7 +79,7 @@ function UserHome(props) {
               <GridListTile style={{ marginBottom: "18px" }} key={index}>
                 <Link to={{
 
-                  pathname:"/individual",
+                  pathname: "/individual",
                   state: {
                     plant: plant.id
                   }
@@ -85,8 +87,8 @@ function UserHome(props) {
                   <img style={{ width: "100%" }} src={plant.picture} alt={plant.name} />
                 </Link>
                 <GridListTileBar
-                  title={plant.name}
-                  subtitle={<span>{plant.name}</span>}
+                  title={<Typography variant="button">{plant.name}</Typography>}
+                  subtitle={species[plant.speciesId].species}
                 />
               </GridListTile>
             ))}

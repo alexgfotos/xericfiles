@@ -146,5 +146,41 @@ export default {
         update: function(id, data){
             return _update("activity", id, data);
         }
-    }
+    },
+    Genus: {
+        getAll: function () {
+            return _getAll("genus");
+        },
+        getById: function (id) {
+            return _getOne("genus", id);
+        },
+        delete: function (id) {
+            return _delete("genus", id);
+        },
+        create: function(data){
+            return _create("genus", data);
+        },
+        update: function(id, data){
+            return _update("genus", id, data);
+        }
+    },
+    Species: {
+        getAll: function () {
+            return _getAll("species");
+        },
+        getById: function (id) {
+            return _getOne("species", id);
+        },
+        delete: function (id) {
+            return _delete("species", id);
+        },
+        create: function(data){
+            return _create("species", data);
+        },
+        update: function(id, data){
+            return _update("species", id, data);
+        }
+    },
+    
+
 }
