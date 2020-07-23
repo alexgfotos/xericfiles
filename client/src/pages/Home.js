@@ -8,6 +8,8 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
 import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles((theme) => ({
@@ -49,13 +51,15 @@ export default function FullWidthGrid() {
                 <Grid item xs={12} sm={4}>
                     <Paper>
                         <Typography variant="body2" color="textPrimary" component="p" className="homeText">
-                            <h1>Welcome to Xeric Files!</h1>
-                            <h2>
-                                <ul>Catalogue your plants and document your plant care</ul>
-                                <ul>Explore other user’s collections</ul>
-                                <ul>Learn about plant care by location</ul>
-                                <ul>Identify your plants by genus and species</ul>
-                            </h2>
+                            <List>
+                            <Typography variant= "h4" >Welcome to Xeric Files!</Typography>
+                                
+                                <ListItem>Catalogue your plants and document your plant care</ListItem>
+                                <ListItem>Explore other user’s collections</ListItem>
+                                <ListItem>Learn about plant care by location</ListItem>
+                                <ListItem>Identify your plants by genus and species</ListItem>
+                            
+                            </List>
                         </Typography>
                     </Paper>
                 </Grid>

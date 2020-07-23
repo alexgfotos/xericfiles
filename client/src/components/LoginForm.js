@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Grid, Button, TextField, Paper, Typography } from '@material-ui/core';
+import { Container, Grid, GridListTile, Button, TextField, Paper, Typography } from '@material-ui/core';
 import Image from 'material-ui-image'
 
 function LoginForm(props) {
@@ -51,10 +51,12 @@ function LoginForm(props) {
                 </Paper>
             </Grid>
             <Container item xs={6} className="loginImages">
+
                 <Grid item xs={6}>
-                    <Image width={20}  src="assets/cactus4.JPG" />
-                    <Image width={20}  src="assets/cactus5.JPG" />
-                    <Image width={20}  src="assets/cactus6.JPG" />
+                   
+                    <Image style={{ width: "100%" }} src="assets/cactus4.JPG" />
+                    <Image width={20} src="assets/cactus5.JPG" />
+                    <Image width={20} src="assets/cactus6.JPG" />
                 </Grid>
             </Container>
 
