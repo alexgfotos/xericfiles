@@ -27,6 +27,13 @@ function UserHome(props) {
     setPlants(plantReq.data);
   }
 
+  // async function getGenus() {
+  //   const genusReq = await axios.get(`/api/genera`)
+  //   console.log(plantReq);
+
+  //   setPlants(plantReq.data);
+  // }
+
   async function getImages() {
     const imageReq = await axios.get(`/api/images`)
     console.log(imageReq.data);
@@ -79,7 +86,7 @@ function UserHome(props) {
                 </Link>
                 <GridListTileBar
                   title={plant.name}
-                  subtitle={<span>{plant.speciesId}</span>}
+                  subtitle={<span>{plant.name}</span>}
                 />
               </GridListTile>
             ))}
