@@ -110,7 +110,7 @@ function Activity(props) {
 
                             </Grid>
 
-                            <Grid item xs={4}>
+                            {/* <Grid item xs={4}>
                                 <FormControl component="fieldset">
                                     <FormLabel component="legend">What's the status of the plant?</FormLabel>
                                     <RadioGroup aria-label="plantStatus"
@@ -120,7 +120,7 @@ function Activity(props) {
                                         <FormControlLabel value="dead" control={<Radio />} label="Dead(send to graveyard...)" />
                                     </RadioGroup>
                                 </FormControl>
-                            </Grid>
+                            </Grid> */}
 
                             <Grid item xs={6}>
                                 <FormControl component="fieldset">
@@ -149,8 +149,8 @@ function Activity(props) {
 
                             <Grid item xs={6}>
                                 <TextField
-                                    required
-                                    id="standard-required"
+                                    
+                                    id="standard-"
                                     label="New Nickname"
                                     placeholder="New Nickname"
                                     name="nickname"
@@ -161,9 +161,9 @@ function Activity(props) {
 
                             <Grid item xs={6}>
                                 <TextField
-                                    required
+                                    
                                     defaultValue=""
-                                    id="standard-required"
+                                    id="standard-"
                                     label="Update Price"
                                     placeholder="Update Price"
                                     name="price"
@@ -174,8 +174,8 @@ function Activity(props) {
 
                             <Grid item xs={6}>
                                 <TextField
-                                    required
-                                    id="standard-required"
+                                    
+                                    id="standard-"
                                     label=""
                                     placeholder="Enter the plant's new size "
                                     name="size"
