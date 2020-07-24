@@ -85,6 +85,9 @@ function Activity(props) {
             console.log(res)
         }).catch(err => {
         })
+        setTimeout(function (){
+            window.location.href = "/home"
+          }, 2000)
     }
 
 
