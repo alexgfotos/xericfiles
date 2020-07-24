@@ -153,7 +153,7 @@ function Activity(props) {
                                     id="standard-"
                                     label="New Nickname"
                                     placeholder="New Nickname"
-                                    name="nickname"
+                                    name="name"
                                     onChange={handleInputChange}
                                     style={{ width: 200 }}
                                 />
