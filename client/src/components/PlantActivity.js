@@ -10,6 +10,7 @@ import FormControl from "@material-ui/core/FormControl";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import FormLabel from "@material-ui/core/FormLabel";
 import Radio from "@material-ui/core/Radio";
+
 function Activity(props) {
     //states used to define our plant
     const [genusOptions, setGenusOptions] = useState([]);
@@ -21,7 +22,7 @@ function Activity(props) {
     const [formObject, setFormObject] = useState(initialFormState)
     const [image, setImage] = useState("");
     const [plantId, setPlantId] = useState("")
-    function clearState(){
+    function clearState() {
         setGenusOptions([])
         setSelectedGenus([])
         setSelectedSpecies([])
@@ -54,8 +55,8 @@ function Activity(props) {
         event.preventDefault();
         API.Plant.update(props.location.state.plant, {
             ...formObject,
-            name:formObject.nickname,
-            width:formObject.size,
+            name: formObject.nickname,
+            width: formObject.size,
             GenusId: selectedGenus,
             SpeciesId: selectedSpecies,
             date: selectedDate
@@ -64,18 +65,19 @@ function Activity(props) {
         }).catch(err => {
         })
         API.Activity.create({
-           water:formObject.watering,
-           fertilizer:formObject.fertilized,
-            status:formObject.plantStatus,
-            nickname:formObject.nickname,
-           PlantId: props.location.state.plant
+            care: formObject.care,
+            water: formObject.watering,
+            fertilizer: formObject.fertilized,
+            status: formObject.plantStatus,
+            nickname: formObject.nickname,
+            PlantId: props.location.state.plant
         }).then(res => {
             console.log(res)
         }).catch(err => {
         })
-        setTimeout(function (){
+        setTimeout(function () {
             window.location.href = "/home"
-          }, 2000)
+        }, 2000)
     }
     const handleInputChange = (event) => {
         event.preventDefault();
@@ -106,23 +108,24 @@ function Activity(props) {
                             </Grid> */}
                             <Grid item xs={6}>
                                 <FormControl component="fieldset">
-                                    <FormLabel component="legend">Is the plant watered?</FormLabel>
+                                    <FormLabel component="legend">Did you water today?</FormLabel>
                                     <RadioGroup aria-label="watering"
-                                                name="watering"
-                                                onChange={handleInputChange}>
+                                        name="watering"
+                                        onChange={handleInputChange}>
                                         <FormControlLabel value="lightly watered" control={<Radio />} label="Lightly Watered" />
                                         <FormControlLabel value="deeply watered" control={<Radio />} label="Deeply Watered" />
+                                        <FormControlLabel value="not watered" control={<Radio />} label="No" />
                                     </RadioGroup>
                                 </FormControl>
                             </Grid>
                             <Grid item xs={6}>
                                 <FormControl component="fieldset">
-                                    <FormLabel component="legend">Is the plant fertilized?</FormLabel>
+                                    <FormLabel component="legend">Did you fertlize today?</FormLabel>
                                     <RadioGroup aria-label="fertilized"
-                                                name="fertilized"
-                                                onChange={handleInputChange}>
-                                        <FormControlLabel value="Fertilized" control={<Radio />} label="Fertilized" />
-                                        <FormControlLabel value="Not Fertilized" control={<Radio />} label="Not Fertilized" />
+                                        name="fertilized"
+                                        onChange={handleInputChange}>
+                                        <FormControlLabel value="Fertilized" control={<Radio />} label="Yes" />
+                                        <FormControlLabel value="Not Fertilized" control={<Radio />} label="No" />
                                     </RadioGroup>
                                 </FormControl>
                             </Grid>
@@ -160,12 +163,12 @@ function Activity(props) {
                                 />
                             </Grid>
                             <Grid item xs={6}>
-                                <h3>Notes:</h3>
+                                <h3>Care:</h3>
                                 <TextareaAutosize
-                                    aria-label="update notes"
-                                    placeholder="type notes here ..."
-                                    name="notes"
-                                    style={{  width: 300, height: 100, fontFamily: "sans-serif", fontSize: "12px" }}
+                                    aria-label="Recent Care"
+                                    placeholder="type care here ..."
+                                    name="care"
+                                    style={{ width: 300, height: 100, fontFamily: "sans-serif", fontSize: "12px" }}
                                     onChange={handleInputChange}
                                 />
                             </Grid>

@@ -33,6 +33,9 @@ module.exports = function (sequelize, DataTypes) {
         Plant.hasMany(models.Image, {
             onDelete: "cascade"
         })
+        Plant.hasMany(models.Activity, {
+            onDelete: "cascade"
+        })
         Plant.belongsTo(models.User, {
             foreignKey: {
                 allowNull: false

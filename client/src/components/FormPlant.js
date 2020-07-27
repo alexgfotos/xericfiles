@@ -209,7 +209,7 @@ function FormPlant() {
                     margin="normal"
                     id="date-picker-inline"
                     name="date"
-                    label="Date of acquired"
+                    label="Date acquired"
                     value={selectedDate}
                     onChange={handleDateChange}
                     KeyboardButtonProps={{
