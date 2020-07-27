@@ -67,8 +67,6 @@ function Activity(props) {
         event.preventDefault();
         API.Plant.update(props.location.state.plant, {
             ...formObject,
-            name:formObject.nickname,
-            width:formObject.size,
             GenusId: selectedGenus,
             SpeciesId: selectedSpecies,
             date: selectedDate
@@ -202,7 +200,6 @@ function Activity(props) {
 
                             <Grid item xs={6}>
                                 <Button variant="contained" color="primary" type="submit" onClick={handlePlantSubmit} spacing={4}>
-
                                     Submit
                                 </Button>
                             </Grid>
