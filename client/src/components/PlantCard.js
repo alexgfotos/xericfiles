@@ -4,6 +4,12 @@ import clsx from 'clsx';
 import { Link } from "react-router-dom";
 import { Button, Grid, ListItemText, Card, CardHeader, CardMedia, CardContent, CardActions, Collapse, Avatar, IconButton, Typography, Box } from '@material-ui/core';
 import { red } from '@material-ui/core/colors';
+import ListSubheader from '@material-ui/core/ListSubheader';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import CheckIcon from '@material-ui/icons/Check';
+import EventIcon from '@material-ui/icons/Event';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import API from "../utils/API"
 import axios from "axios"
@@ -219,31 +225,53 @@ export default function PlantCard(props) {
               </IconButton>
             </CardActions>
             <Collapse in={expanded} timeout="auto" unmountOnExit>
+              <CardContent>
 
-              <Box>
+
                 {activities.map((activity) => (
                   <>
-                  <Typography variant= "h6">
+                    <Typography variant="button">
+
+                      <Moment parse="YYYY-MM-DD HH:mm" format="MM-DD-YYYY">
+                        {activity.createdAt}
+                      </Moment>
+
+                    </Typography>
+
+                    {activity.water ?
+                            (
+                              <ListItem button className={classes.nested}>
+                                <ListItemIcon>
+                                  <CheckIcon fontSize='small' />{activity.water}
+                                </ListItemIcon>
+
+                              </ListItem>) : (null)}
+
+
+                          {activity.fertilizer ?
+                            (
+                              <ListItem button className={classes.nested}>
+                                <ListItemIcon>
+                                  <CheckIcon fontSize='small' />{activity.fertilizer}
+                                </ListItemIcon>
+
+                              </ListItem>) : (null)}
+
+                          {activity.care ?
+                            (
+                              <ListItem button className={classes.nested}>
+                                <ListItemIcon>
+                                  <CheckIcon fontSize='small' />{activity.care}
+                                </ListItemIcon>
+
+                              </ListItem>) : (null)}
+                        
+
                     
-                  <Moment parse="YYYY-MM-DD HH:mm">
-                  {activity.createdAt}
-            </Moment>
-                
-                  </Typography>
-                  <ListItemText>
-                   <Typography variant= "body1">
-                   { activity.water}                   
-                 </Typography>
-                 </ListItemText>
-                  <Typography variant= "body1">                 
-                  { activity.fertilizer}
-                </Typography>
-                <Typography variant= "body1">                 
-                  { activity.care}
-                </Typography>
-                  </>
+                    </>
                 ))}
-              </Box>
+
+              </CardContent>
 
 
             </Collapse>

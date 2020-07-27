@@ -108,27 +108,23 @@ function Activity(props) {
                             </Grid> */}
                             <Grid item xs={6}>
                                 <FormControl component="fieldset">
-                                    <FormLabel component="legend">Did you water today?</FormLabel>
+                                    <FormLabel component="legend">What care did you do today?</FormLabel>
                                     <RadioGroup aria-label="watering"
                                         name="watering"
                                         onChange={handleInputChange}>
                                         <FormControlLabel value="lightly watered" control={<Radio />} label="Lightly Watered" />
                                         <FormControlLabel value="deeply watered" control={<Radio />} label="Deeply Watered" />
-                                        <FormControlLabel value="not watered" control={<Radio />} label="No" />
+                                        {/* <FormControlLabel value="not watered" control={<Radio />} label="No" /> */}
                                     </RadioGroup>
-                                </FormControl>
-                            </Grid>
-                            <Grid item xs={6}>
-                                <FormControl component="fieldset">
-                                    <FormLabel component="legend">Did you fertlize today?</FormLabel>
                                     <RadioGroup aria-label="fertilized"
                                         name="fertilized"
                                         onChange={handleInputChange}>
-                                        <FormControlLabel value="Fertilized" control={<Radio />} label="Yes" />
-                                        <FormControlLabel value="Not Fertilized" control={<Radio />} label="No" />
+                                        <FormControlLabel value="Fertilized" control={<Radio />} label="Fertilized" />
+                                        {/* <FormControlLabel value="Not Fertilized" control={<Radio />} label="No" /> */}
                                     </RadioGroup>
                                 </FormControl>
                             </Grid>
+                         
                             <Grid item xs={6}>
                                 <TextField
                                     id="standard-"
