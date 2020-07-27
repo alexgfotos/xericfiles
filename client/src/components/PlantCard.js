@@ -2,11 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import { Link } from "react-router-dom";
-import { Button, Grid, ListItemText, Card, CardHeader, CardMedia, CardContent, CardActions, Collapse, Avatar, IconButton, Typography } from '@material-ui/core';
+import { Button, Grid, ListItemText, Card, CardHeader, CardMedia, CardContent, CardActions, Collapse, Avatar, IconButton, Typography, Box } from '@material-ui/core';
 import { red } from '@material-ui/core/colors';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import API from "../utils/API"
 import axios from "axios"
+import Moment from 'react-moment';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -34,11 +35,11 @@ const useStyles = makeStyles((theme) => ({
 
 
 export default function PlantCard(props) {
-  
+
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
   const [plant, setPlant] = useState({});
-  const [activity, setActivity] = useState({})
+  const [activity, setActivity] = useState([])
   // const [plantIndex, setPlantIndex] = useState(0);
   const [genus, setGenusOptions] = useState([]);
   const [species, setSpeciesOptions] = useState([]);
@@ -50,7 +51,7 @@ export default function PlantCard(props) {
   useEffect(() => {
     loadPlants();
     loadActivity();
-
+    console.log(activity)
   }, []);
 
   useEffect(() => {
@@ -135,12 +136,21 @@ export default function PlantCard(props) {
       .catch(err => console.log(err));
   }
 
-
+  let activities = []
+  activity.forEach(activity => {
+    let currentActivity = {};
+    currentActivity.createdAt = activity.createdAt;
+    currentActivity.water = activity.water
+    currentActivity.fertilizer = activity.fertilizer;
+    currentActivity.care = activity.care;
+    activities.push(currentActivity);
+  })
 
 
   return (
     <>
       <Grid sm={12} direction="row" spacing={2}>
+
         <Grid item sm={12} justify="flex-start" direction="row">
           <Button component={Link} to="/home" variant="contained" color="primary">Back</Button>
         </Grid>
@@ -151,7 +161,7 @@ export default function PlantCard(props) {
               avatar={
                 <Avatar alt="plant" src={plant.Images?.[0].image} className={classes.small} />
               }
-           
+
               title={genus.genus + " " + species.species}
               subheader={plant.name}
             />
@@ -172,7 +182,7 @@ export default function PlantCard(props) {
                   <ListItemText
                     primary={"Nickname: " + plant.name}
                   />
-                 
+
 
                 </Grid>
                 <Grid item xs={6} md={6} container direction="column" justify="flex-start" alignItems="flex-start"  >
@@ -186,9 +196,10 @@ export default function PlantCard(props) {
                   <ListItemText
                     primary={"Date: " + plant.date}
                   />
-                 
+
 
                 </Grid>
+
               </Grid>
 
               <Typography variant="body2" color="textSecondary">
@@ -196,48 +207,50 @@ export default function PlantCard(props) {
               </Typography>
             </CardContent>
             <CardActions disableSpacing>
-          <IconButton
-            className={clsx(classes.expand, {
-              [classes.expandOpen]: expanded,
-            })}
-            onClick={handleExpandClick}
-            aria-expanded={expanded}
-            aria-label="show more"
-          ><Typography variant="caption">Care Log</Typography>
-           <ExpandMoreIcon />
-          </IconButton>
-        </CardActions>
-        <Collapse in={expanded} timeout="auto" unmountOnExit>
-          <CardContent>
-            <Typography paragraph>Method:</Typography>
-            <Typography paragraph>
-              Heat 1/2 cup of the broth in a pot until simmering, add saffron and set aside for 10
-              minutes.
-          </Typography>
-            <Typography paragraph>
-              Heat oil in a (14- to 16-inch) paella pan or a large, deep skillet over medium-high
-              heat. Add chicken, shrimp and chorizo, and cook, stirring occasionally until lightly
-              browned, 6 to 8 minutes. Transfer shrimp to a large plate and set aside, leaving chicken
-              and chorizo in the pan. Add pimentón, bay leaves, garlic, tomatoes, onion, salt and
-              pepper, and cook, stirring often until thickened and fragrant, about 10 minutes. Add
-              saffron broth and remaining 4 1/2 cups chicken broth; bring to a boil.
-          </Typography>
-            <Typography paragraph>
-              Add rice and stir very gently to distribute. Top with artichokes and peppers, and cook
-              without stirring, until most of the liquid is absorbed, 15 to 18 minutes. Reduce heat to
-              medium-low, add reserved shrimp and mussels, tucking them down into the rice, and cook
-              again without stirring, until mussels have opened and rice is just tender, 5 to 7
-              minutes more. (Discard any mussels that don’t open.)
-          </Typography>
-            <Typography>
-              Set aside off of the heat to let rest for 10 minutes, and then serve.
-          </Typography>
-          </CardContent>
-        </Collapse>
+              <IconButton
+                className={clsx(classes.expand, {
+                  [classes.expandOpen]: expanded,
+                })}
+                onClick={handleExpandClick}
+                aria-expanded={expanded}
+                aria-label="show more"
+              ><Typography variant="caption">Care Log</Typography>
+                <ExpandMoreIcon />
+              </IconButton>
+            </CardActions>
+            <Collapse in={expanded} timeout="auto" unmountOnExit>
+
+              <Box>
+                {activities.map((activity) => (
+                  <>
+                  <Typography variant= "h6">
+                    
+                  <Moment parse="YYYY-MM-DD HH:mm">
+                  {activity.createdAt}
+            </Moment>
+                
+                  </Typography>
+                  <ListItemText>
+                   <Typography variant= "body1">
+                   { activity.water}                   
+                 </Typography>
+                 </ListItemText>
+                  <Typography variant= "body1">                 
+                  { activity.fertilizer}
+                </Typography>
+                <Typography variant= "body1">                 
+                  { activity.care}
+                </Typography>
+                  </>
+                ))}
+              </Box>
+
+
+            </Collapse>
           </Card>
         </Grid>
         <Grid item sm={12} justify="flex-end" direction="row">
-          <Button component={Link} to={{pathname:"/activity", state:{plant:plant.id}}} variant="contained" color="primary" >Update</Button>
+          <Button component={Link} to={{ pathname: "/activity", state: { plant: plant.id } }} variant="contained" color="primary" >Update</Button>
         </Grid>
       </Grid>
     </>

@@ -7,13 +7,13 @@ const isAuthenticated = require("../../config/middleware/isAuthenticated");
  */
 router.get("/", function (req, res) {
     console.log(req.query);
-    db.Activity.findAll({ where: {UserId:req.query.UserId }, include: [db.Image]})
+    db.Activity.findAll({ where: { PlantId: req.query.PlantId } })
         .then(dbModel => res.json(dbModel))
         .catch(err => res.status(422).json(err));
 });
 
 
-router.get("/:id",  function (req, res) {
+router.get("/:id", function (req, res) {
     db.Activity.findByPK(req.params.id)
         .then(dbModel => res.json(dbModel))
         .catch(err => res.status(422).json(err));
@@ -23,8 +23,8 @@ router.get("/:id",  function (req, res) {
  * Post - Create
  * Notice how we are also taking in the User Id! Important!
  */
-router.post("/", isAuthenticated,  function (req, res) {
-    if(req.user === null || req.user.id === null){
+router.post("/", isAuthenticated, function (req, res) {
+    if (req.user === null || req.user.id === null) {
         res.status(401).json("NOT AUTHORIZED");
     }
     db.Activity.create({
