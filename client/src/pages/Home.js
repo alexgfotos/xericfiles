@@ -52,7 +52,7 @@ export default function FullWidthGrid() {
                     <Paper>
                         <Typography variant="body2" color="textPrimary" component="p" className="homeText">
                             <List>
-                            <Typography variant= "h4" >Welcome to Xeric Files!</Typography>
+                            <ListItem><Typography variant= "h4" >Welcome to Xeric Files!</Typography></ListItem>
                                 
                                 <ListItem>Catalogue your plants and document your plant care</ListItem>
                                 <ListItem>Explore other user’s collections</ListItem>

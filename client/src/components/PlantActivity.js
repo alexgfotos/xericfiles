@@ -11,7 +11,6 @@ import RadioGroup from "@material-ui/core/RadioGroup";
 import FormLabel from "@material-ui/core/FormLabel";
 import Radio from "@material-ui/core/Radio";
 
-
 function Activity(props) {
     //states used to define our plant
     const [genusOptions, setGenusOptions] = useState([]);
@@ -23,8 +22,7 @@ function Activity(props) {
     const [formObject, setFormObject] = useState(initialFormState)
     const [image, setImage] = useState("");
     const [plantId, setPlantId] = useState("")
-
-    function clearState(){
+    function clearState() {
         setGenusOptions([])
         setSelectedGenus([])
         setSelectedSpecies([])
@@ -33,40 +31,32 @@ function Activity(props) {
         setFormObject(initialFormState)
         setImage("")
     }
-
-
     useEffect(() => {
         // on site load, get all genera using the api call/route
         async function getGenera() {
-
             const gen = await axios.get("/api/genus")
             console.log(gen);
-
             setGenusOptions(gen.data);
         }
         getGenera();
     }, []) //this is staying to load on an empty state, which is on the initial page load
-
     useEffect(() => {
-
         async function getSpecies() {
             // once genera are loaded, get species by genera ID using api call
             const spec = await axios.get(`/api/species?GenusId=${selectedGenus}`)
             console.log(spec);
-
             setSpeciesOptions(spec.data);
-
         }
         getSpecies()
     }, [selectedGenus]) //this tells useEffect to load once the state "selectedGenus" exists
-
-
     //when submit is hit, create plant in db by sending it an object created from the states in the form.
     const handlePlantSubmit = (event) => {
         console.log("plant submitted")
         event.preventDefault();
         API.Plant.update(props.location.state.plant, {
             ...formObject,
+            name: formObject.nickname,
+            width: formObject.size,
             GenusId: selectedGenus,
             SpeciesId: selectedSpecies,
             date: selectedDate
@@ -74,42 +64,37 @@ function Activity(props) {
             console.log(res)
         }).catch(err => {
         })
-
         API.Activity.create({
-           water:formObject.watering,
-           fertilizer:formObject.fertilized,
-            status:formObject.plantStatus,
-            nickname:formObject.nickname,
-           PlantId: props.location.state.plant
+            care: formObject.care,
+            water: formObject.watering,
+            fertilizer: formObject.fertilized,
+            status: formObject.plantStatus,
+            nickname: formObject.nickname,
+            PlantId: props.location.state.plant
         }).then(res => {
             console.log(res)
         }).catch(err => {
         })
+        setTimeout(function () {
+            window.location.href = "/home"
+        }, 2000)
     }
-
-
-
     const handleInputChange = (event) => {
         event.preventDefault();
         const { name, value } = event.target;
         setFormObject({ ...formObject, [name]: value });
     }
-
     return (
         <>
-
             <Container >
                 <form >
                     <Paper >
                         <Grid container spacing={2} direction="column" justify="center" alignItems="center" maxWidth="200">
                             <Grid item xs={6} >
-
                                 <Typography variant="h4" gutterBottom>
                                     Update Plant
                                 </Typography>
-
                             </Grid>
-
                             {/* <Grid item xs={4}>
                                 <FormControl component="fieldset">
                                     <FormLabel component="legend">What's the status of the plant?</FormLabel>
@@ -121,35 +106,27 @@ function Activity(props) {
                                     </RadioGroup>
                                 </FormControl>
                             </Grid> */}
-
                             <Grid item xs={6}>
                                 <FormControl component="fieldset">
-                                    <FormLabel component="legend">Is the plant watered?</FormLabel>
+                                    <FormLabel component="legend">What care did you do today?</FormLabel>
                                     <RadioGroup aria-label="watering"
-                                                name="watering"
-                                                onChange={handleInputChange}>
+                                        name="watering"
+                                        onChange={handleInputChange}>
                                         <FormControlLabel value="lightly watered" control={<Radio />} label="Lightly Watered" />
                                         <FormControlLabel value="deeply watered" control={<Radio />} label="Deeply Watered" />
+                                        {/* <FormControlLabel value="not watered" control={<Radio />} label="No" /> */}
                                     </RadioGroup>
-                                </FormControl>
-                            </Grid>
-
-                            <Grid item xs={6}>
-                                <FormControl component="fieldset">
-                                    <FormLabel component="legend">Is the plant fertilized?</FormLabel>
                                     <RadioGroup aria-label="fertilized"
-                                                name="fertilized"
-                                                onChange={handleInputChange}>
+                                        name="fertilized"
+                                        onChange={handleInputChange}>
                                         <FormControlLabel value="Fertilized" control={<Radio />} label="Fertilized" />
-                                        <FormControlLabel value="Not Fertilized" control={<Radio />} label="Not Fertilized" />
+                                        {/* <FormControlLabel value="Not Fertilized" control={<Radio />} label="No" /> */}
                                     </RadioGroup>
                                 </FormControl>
                             </Grid>
-
-
+                         
                             <Grid item xs={6}>
                                 <TextField
-                                    
                                     id="standard-"
                                     label="New Nickname"
                                     placeholder="New Nickname"
@@ -158,10 +135,8 @@ function Activity(props) {
                                     style={{ width: 200 }}
                                 />
                             </Grid>
-
                             <Grid item xs={6}>
                                 <TextField
-                                    
                                     defaultValue=""
                                     id="standard-"
                                     label="Update Price"
@@ -171,10 +146,8 @@ function Activity(props) {
                                     style={{ width: 200 }}
                                 />
                             </Grid>
-
                             <Grid item xs={6}>
                                 <TextField
-                                    
                                     id="standard-"
                                     label=""
                                     placeholder="Enter the plant's new size "
@@ -185,33 +158,26 @@ function Activity(props) {
                                     InputLabelProps={{ shrink: true }}
                                 />
                             </Grid>
-
-
                             <Grid item xs={6}>
-                                <h3>Notes:</h3>
+                                <h3>Care:</h3>
                                 <TextareaAutosize
-                                    aria-label="update notes"
-                                    placeholder="type notes here ..."
-                                    name="notes"
-                                    style={{  width: 300, height: 100, fontFamily: "sans-serif", fontSize: "12px" }}
+                                    aria-label="Recent Care"
+                                    placeholder="type care here ..."
+                                    name="care"
+                                    style={{ width: 300, height: 100, fontFamily: "sans-serif", fontSize: "12px" }}
                                     onChange={handleInputChange}
                                 />
                             </Grid>
-
                             <Grid item xs={6}>
                                 <Button variant="contained" color="primary" type="submit" onClick={handlePlantSubmit} spacing={4}>
                                     Submit
                                 </Button>
                             </Grid>
-
                         </Grid>
                     </Paper>
-
                 </form>
             </Container>
-
         </>
     )
 }
-
 export default Activity;
