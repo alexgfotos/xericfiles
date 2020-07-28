@@ -1,274 +1,172 @@
-# Project 3 Starter Kit - Sequelize and MaterialUI
+# Employee Directory
+  ![GitHub repo size](https://img.shields.io/github/repo-size/alexgfotos/xericfiles?style=for-the-badge) ![GitHub code size](https://img.shields.io/github/languages/code-size/alexgfotos/xericfiles?color=gold&style=for-the-badge) ![GitHub language count](https://img.shields.io/github/languages/count/alexgfotos/xericfiles?color=green&style=for-the-badge) ![GitHub top language](https://img.shields.io/github/languages/top/alexgfotos/xericfiles?color=red&style=for-the-badge)
 
-The Project 3 Starter Kit is an opinionated, preconfigured MVC-style application w/ React intended to satisfy the stated requirements and additional requirements of Project 3.
+---
 
-#### Note: This is the one using Sequelize and MaterialUI
-
-## Getting Started
-
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
-
-### Prerequisites
-
-What things you need to install the software and how to install them
+## Description:
+Succulent cataloguing, care logging, and crowd-sourced cultivation data.
 
 
-```
-Node.js 
-a local instance of MySQL Server 
-an active internet connection
-```
 
-### Installing
+---
 
-A step by step series of examples that tell you how to get a development env running
-
-First, install all dependencies through npm or yarn. Make sure you use one or the other, if you are going to use yarn. 
-
-```
-npm install
-```
-OR 
-
-```
-yarn 
-```
-
-Next run the schema.sql as found within `db/schema.sql`. It should contain: 
-```
-DROP DATABASE IF EXISTS project_3_local;
-CREATE DATABASE project_3_local;
-
-DROP DATABASE IF EXISTS project_3_test;
-CREATE DATABASE project_3_test;
-```
-These names are of course up to you; however, we will need a test and local database if we wish to use the prerolled integration tests. 
-
-* Note: If you are going to change the local database/test database, make sure to follow the Note in the next ste. 
-
-Next, we need to put in your configuration for the connection to your local database server. This can be found in `config.json` in the `config` folder. Currently, it looks like: 
-
-```
-{
-  "development": {
-    "username": "root",
-    "password": null,
-    "database": "project_3_local",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
-  },
-  "test": {
-    "username": "root",
-    "password": null,
-    "database": "project_3_test",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
-  }
-}
-```
-It has two connections;  
-
-- development:
-   * For your local development work. 
-   * The database name assumes you are still talking to the db defined in schema. Change this if you are not. 
-   * Put in your local db root user password.
-- test: 
-    * For testing locally. 
-    * The database name assumes you are still talking to the db defined in schema. Change this if you are not. 
-   * Put in your local db root user password.
+## Table of Contents:
+* [Installation](#installation)
+* [Usage](#usage)
+* [License](#license)
+* [Resources](#resources)
+* [Contributing](#contributing)
 
 
-Once you have down that; you are ready to run the server, with:
+---
 
-```
-npm run start
-```
+## Installation:
+None is required.
 
+---
 
-## Running the tests
-
-Currently, the application has no tests
-
-## Structure
-
-The structure of the application, as produced, is replicated below, with folders marked with ```-``` and files marked with ```*```. Below this, please find the detailed description of each file and what it is doing. 
-
-```
-- client
-    - public
-        * favicon.ico
-        * index.html
-        * logo192.png
-        * logo512.png
-        * manifest.json
-        * robots.txt
-    - src
-        - components
-            * Error.js
-            * index.js
-            * LoginForm.js
-            * Navigation.js
-            * PostForm.js
-            * PostTable.js
-            * SignupForm.js
-        - pages
-            * Auth.js
-            * Forum.js
-            * Home.js
-            * index.js
-            * Requirements.js
-        - utils
-        * App.js
-        * index.js
-        * logo.svg
-    * .gitignore
-    * package.json
-    * README.md
-- config
-    - middleware
-        * isAuthenticated.js
-    * config.json
-    * passport.js
-- controllers
-    - api
-        * index.js
-        * postsController.js
-        * usersController.js
-    * authController.js
-    * htmlController.js
-    * index.js
-- cypress
-    - fixtures
-    - integration
-        - _base
-            * _canary.js
-            * login.js
-            * signup.js
-        - forum
-            * layout.js
-            * posts.s
-    - plugins
-        * index.js
-    - support
-        * commands.js
-        * index.js
-- db
-    * schema.sql
-- models
-    * index.js
-    * post.js
-    * user.js
-- public
-    - stylesheets
-        * style.css
-    * favicon.ico
-* package.json
-* README.md
-* server.js
-```
-
-### Structure Explanation
-
-- **client** - Our React App/ our client
-    - **public** - Our public folder, for static files 
-        * **favicon.ico** - REPLACE THIS 
-        * **index.html** - Add CDN'ed stylesheets here
-        * **logo192.png** - REPLACE THIS
-        * **logo512.png** - REPLACE THIS
-        * **manifest.json** - Use this to make it a PWA if you want!
-        * **robots.txt** - For SEO purposes
-    - **src** - Our react code
-        - **components** - Our presentational components
-            * **Error.js** - For showing errors 
-            * **index.js** - Exports all presentational components for easy import
-            * **LoginForm.js** - The login form
-            * **Navigation.js** - Our navbar
-            * **PostForm.js** - Our new post form
-            * **PostTable.js** - A Table of all posts 
-            * **SignupForm.js** - The user signup form
-        - pages
-            * **Auth.js** - The page for handling login/signup
-            * **Forum.js** - The forum page for showing and adding posts
-            * **Home.js** - The home page
-            * **index.js** - Export all pages for easy import
-            * **Requirements.js** - The requirements page
-        - utils
-            * **API.js** - All APIs. Uses private methods to reduce code bloat
-        * **App.js** - Our App! Notice, it handles the holding of user data and private routes.  
-        * index.js
-        * logo.svg
-    * .gitignore
-    * package.json
-    * README.md
-- **config**: Configuration. This contains the passport configuration, the middleware for checking if a user is authenticated, and the Sequelize connection configuration 
-    - **middleware**: For the authentication middleware and any other Express middleware we might need.
-        * **isAuthenticated.js**: This is the authentication middleware. Do not change unless you need to change how passwords work, which is unlikely. It simply checks to see if passport has stored a user in the request; it only does this if someone is logged in. 
-    * **passport.js**: This is how we are handling actually authenticating. Firstly, it relies on there being a User model with an email and password column. If you remove that, this will break. Barring that, if you wish to go into detail, look up how the ```passport-local``` strategy works with ```passport```. We will talk about this more in the back third of class. 
-- **controllers**: Our controllers. All of them are using Express router to make them as clean as possible. 
-    - **api**: API controllers, aka, data controllers. This is where we want to stick anything talking directly to a model, that doesn't have a page attached to it. AKA, APIs.
-        * **index.js** This is where you *register* an API controller. First import it, then attach it to a route. This is so we only have to write what path the controller is on *once*. 
-        * **postsController.js**: An example RESTful controller for Posts. Notice how the only part of the route we configure is the params and final part of it. This is because the rest of the routing is handled in the index files.   
-        * **usersController.js**; An example RESTful controller for User.
-    * authController.js: Authentication controller to enable authentication. Exposes four routes, read up on them to understand, and if you change the layout or structure of the login/signup pages you may need to change this. 
-    * **index.js**: The master registry for all controllers. It registers auth and api controllers. You likely *won't* need to modify this, but if you add a whole new set of controllers or another top level one, you will need to add it here. This is imported by ```server.js```.  
-- models
-    * index.js
-    * **post.js**: An example model 
-    * **user.js**: Our user model. Change this at your own risk. It has two key fields, ```email``` and ```password```. All of authentication relies on this. It also uses bcryprt.js to encrypt and check our passwords. 
-* package.json: The package.json
-* README.md: This file.
-* **server.js**: Our entry point. It handles all the top level imports, hooking up our express instance with all the middleware, including authentication and the router, and then initializes a sequelize connection and the server listening. 
+## Usage:
+To use this application, go to __[this link](https://alexgfotos.github.io/xericfiles/)__.
 
 
-## How to modify:
-
-### I want to add a model.
-
-Add the model to the ```models``` folder. The ```index.js``` file generated from the sequelize-cli will pick it up. 
-
-### I want to add an API controller to expose data
-
-Based on the model, you need to: 
-- Create a ```modelController``` in the ```controllers/api``` folder. 
-- Add all routes you need. 
-- Register the controller in the ```controllers/api/index.js``` file. 
-
-### I want to add a page
-
-- Create a new page in `client/src/pages`
-- Add a route to App.js file in `client/src/App.js`
-
-You may also need to: 
-- Get some data
-- Add some javascript
-- Add some css
 
 
-## Deployment
 
+## License:
+[MIT License](https://opensource.org/licenses/MIT)
 
-Please follow the configuration guide supplied in Unit 14. You will need to: 
+## Resources:
+* [ReactJS](https://reactjs.org/docs/getting-started.html)
+  * [React Hooks](https://reactjs.org/docs/hooks-intro.html) : [useState](https://reactjs.org/docs/hooks-state.html), [useEffect](https://reactjs.org/docs/hooks-effect.html)
+  * [Context](https://reactjs.org/docs/context.html#when-to-use-context)
+* [npmjs](https://www.npmjs.com/)
+  * [axios](https://www.npmjs.com/package/axios)
+  * [material-ui/core](https://www.npmjs.com/package/@material-ui/core)
+* [Material UI](https://material-ui.com/)
+* [Sequelize](https://sequelize.org/master/manual/getting-started.html)
 
-- Configure a Heroku application
-- Add an instance of JawsDB and add the connection information in ```config/config.json```
-- Pass the config var ```NODE_ENV = production``` in the deployed version. 
+---
 
-### Running Seeds:
+Copyright © 2020 Xeric Files
 
-    -heroku run bash -a xeric
-    -npx sequelize-cli db:seed:all
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-## Built With
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
 
-* [Express](https://expressjs.com/) - Express, our web framework
-* [Express Handlebars](https://www.npmjs.com/package/express-handlebars) - Express Handlebars, a handlebars integration for Express, that simplifies a bunch of Express things
-* [Morgan](https://www.npmjs.com/package/morgan) - Morgan, an improved logging library that works nicely with Express. Now, all requests to our server get logged out in the console. 
-* [Sequelize](https://sequelize.org/) - Sequelize, our ORM
-* [Passport](https://www.npmjs.com/package/passport) - Passport is a an authentication middleware for Express that lets us off load a bunch of the fiddly bits of authentication. 
-* [Passport-Local](https://www.npmjs.com/package/passport-local) - Passport is a an authentication middleware for Express that lets us off load a bunch of the fiddly bits of authentication. 
-* [Cypress](https://www.cypress.io/) - Cypress is a front-end testing suite that allows for automation of browser based tests.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
 
-## License
+---
 
-This project is licensed under the MIT License.
+## Contributing:
+Contributor Covenant Code of Conduct
+Our Pledge
+We as members, contributors, and leaders pledge to make participation in our
+community a harassment-free experience for everyone, regardless of age, body
+size, visible or invisible disability, ethnicity, sex characteristics, gender
+identity and expression, level of experience, education, socio-economic status,
+nationality, personal appearance, race, religion, or sexual identity
+and orientation.
+We pledge to act and interact in ways that contribute to an open, welcoming,
+diverse, inclusive, and healthy community.
+Our Standards
+Examples of behavior that contributes to a positive environment for our
+community include:
+
+* Demonstrating empathy and kindness toward other people
+* Being respectful of differing opinions, viewpoints, and experiences
+* Giving and gracefully accepting constructive feedback
+* Accepting responsibility and apologizing to those affected by our mistakes,
+and learning from the experience
+* Focusing on what is best not just for us as individuals, but for the
+overall community
+
+Examples of unacceptable behavior include:
+
+* The use of sexualized language or imagery, and sexual attention or
+advances of any kind
+* Trolling, insulting or derogatory comments, and personal or political attacks
+* Public or private harassment
+* Publishing others’ private information, such as a physical or email
+address, without their explicit permission
+* Other conduct which could reasonably be considered inappropriate in a
+professional setting
+
+Enforcement Responsibilities
+Community leaders are responsible for clarifying and enforcing our standards of
+acceptable behavior and will take appropriate and fair corrective action in
+response to any behavior that they deem inappropriate, threatening, offensive,
+or harmful.
+Community leaders have the right and responsibility to remove, edit, or reject
+comments, commits, code, wiki edits, issues, and other contributions that are
+not aligned to this Code of Conduct, and will communicate reasons for moderation
+decisions when appropriate.
+Scope
+This Code of Conduct applies within all community spaces, and also applies when
+an individual is officially representing the community in public spaces.
+Examples of representing our community include using an official e-mail address,
+posting via an official social media account, or acting as an appointed
+representative at an online or offline event.
+Enforcement
+Instances of abusive, harassing, or otherwise unacceptable behavior may be
+reported to the community leaders responsible for enforcement at
+[INSERT CONTACT METHOD].
+All complaints will be reviewed and investigated promptly and fairly.
+All community leaders are obligated to respect the privacy and security of the
+reporter of any incident.
+Enforcement Guidelines
+Community leaders will follow these Community Impact Guidelines in determining
+the consequences for any action they deem in violation of this Code of Conduct:
+1. Correction
+Community Impact: Use of inappropriate language or other behavior deemed
+unprofessional or unwelcome in the community.
+Consequence: A private, written warning from community leaders, providing
+clarity around the nature of the violation and an explanation of why the
+behavior was inappropriate. A public apology may be requested.
+2. Warning
+Community Impact: A violation through a single incident or series
+of actions.
+Consequence: A warning with consequences for continued behavior. No
+interaction with the people involved, including unsolicited interaction with
+those enforcing the Code of Conduct, for a specified period of time. This
+includes avoiding interactions in community spaces as well as external channels
+like social media. Violating these terms may lead to a temporary or
+permanent ban.
+3. Temporary Ban
+Community Impact: A serious violation of community standards, including
+sustained inappropriate behavior.
+Consequence: A temporary ban from any sort of interaction or public
+communication with the community for a specified period of time. No public or
+private interaction with the people involved, including unsolicited interaction
+with those enforcing the Code of Conduct, is allowed during this period.
+Violating these terms may lead to a permanent ban.
+4. Permanent Ban
+Community Impact: Demonstrating a pattern of violation of community
+standards, including sustained inappropriate behavior,  harassment of an
+individual, or aggression toward or disparagement of classes of individuals.
+Consequence: A permanent ban from any sort of public interaction within
+the community.
+Attribution
+This Code of Conduct is adapted from the Contributor Covenant,
+version 2.0, available at
+https://www.contributor-covenant.org/version/2/0/code_of_conduct.html.
+Community Impact Guidelines were inspired by Mozilla’s code of conduct
+enforcement ladder.
+For answers to common questions about this code of conduct, see the FAQ at
+https://www.contributor-covenant.org/faq. Translations are available at
+https://www.contributor-covenant.org/translations.
+
+---
+
 
