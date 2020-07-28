@@ -89,7 +89,7 @@ function UserHome(props) {
                 </Link>
                 <GridListTileBar
                   title={<Typography variant="button">{plant.name}</Typography>}
-                  subtitle={species[plant.speciesId].species}
+                  subtitle={species[plant.speciesId]?.species}
                 />
               </GridListTile>
             ))}
