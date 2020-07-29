@@ -26,7 +26,7 @@ None is required.
 ---
 
 ## Usage:
-To use this application, go to __[this link](https://alexgfotos.github.io/xericfiles/)__.
+To use this application, go to __[this link](http://xeric.herokuapp.com/)__.
 
 
 
